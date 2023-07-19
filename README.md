@@ -9,12 +9,14 @@ The project was created in Qt and Python. It includes several options listed bel
 
 # Prerequirements
 To execute the program, check in terminal:
-```
+```bash
 pip show PyQt5
+pip show sqlalchemy
 ```
 If not installed, do:
-```
+```bash
 pip install PyQt5
+pip install sqlalchemy
 ```
 
 # Build
