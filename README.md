@@ -12,11 +12,13 @@ To execute the program, check in terminal:
 ```bash
 pip show PyQt5
 pip show sqlalchemy
+sqlite3 --version
 ```
 If not installed, do:
 ```bash
 pip install PyQt5
 pip install sqlalchemy
+sudo apt-get install sqlite3
 ```
 
 # Build
