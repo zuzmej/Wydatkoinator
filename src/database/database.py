@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, joinedload
-from base import Base
-from category import Category
-from expense import Expense
+from .base import Base
+from .category import Category
+from .expense import Expense
 from datetime import datetime
 
 class Database:

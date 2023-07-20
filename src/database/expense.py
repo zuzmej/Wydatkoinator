@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, Float, Date, ForeignKey
 from sqlalchemy.orm import relationship
-from base import Base
-from category import Category  
+from .base import Base
+from .category import Category  
 
 class Expense(Base):
     __tablename__ = 'expense'
