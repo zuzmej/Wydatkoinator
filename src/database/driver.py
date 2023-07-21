@@ -1,4 +1,7 @@
-from database import Database
+import sys
+sys.path.insert(0, '../../')  # Dodaj katalog nadrzędny do ścieżki
+
+from src.database.database import Database
 db = Database("expenses.db")
 
 # Add categories
@@ -10,11 +13,15 @@ try:
 except ValueError as e:
     print(e)  # handle error if category already exists
 
-# Add expenses
-print("\nAdding expenses...")
-db.add_expense(amount=100.50, date="2023-07-01", category_id=1)
-db.add_expense(amount=800.00, date="2023-07-05", category_id=2)
-db.add_expense(amount=50.00, date="2023-07-10", category_id=3)
+try:
+    # Add expenses
+    print("\nAdding expenses...")
+    db.add_expense(amount=100.50, date="2023-07-01", category_id=1)
+    db.add_expense(amount=800.00, date="2023-07-05", category_id=2)
+    db.add_expense(amount=50.00, date="2023-07-10", category_id=3)
+except ValueError as e:
+    print(e)  # handle error if try to add expense with non-existing category
+
 
 # Get all categories
 print("\nGetting all categories...")
