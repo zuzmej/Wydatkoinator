@@ -98,3 +98,39 @@ class Database:
         expenses = session.query(Expense).options(joinedload(Expense.category)).filter(Expense.date.between(start_date, end_date),Expense.amount.between(min_cost, max_cost)).all()
         session.close()
         return expenses
+    
+
+    def delete_expense(self, expense_id: int):
+        session = self.Session()
+        expense = session.query(Expense).filter_by(id=expense_id).first()
+        
+        if not expense:
+            raise ValueError(f"No expense found with id {expense_id}")
+
+        session.delete(expense)
+        session.commit()
+        session.close()
+
+
+
+    def edit_expense(self, expense_id: int, amount: float = None, date: str = None, category_id: int = None):
+        session = self.Session()
+        expense = session.query(Expense).filter_by(id=expense_id).first()
+        
+        if not expense:
+            raise ValueError(f"No expense found with id {expense_id}")
+
+        if amount is not None:
+            expense.amount = amount
+
+        if date is not None:
+            expense.date = datetime.strptime(date, "%Y-%m-%d").date()
+
+        if category_id is not None:
+            category = session.query(Category).filter_by(id=category_id).first()
+            if not category:
+                raise ValueError(f"No category found with id {category_id}")
+            expense.category_id = category_id
+
+        session.commit()
+        session.close()

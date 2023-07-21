@@ -73,4 +73,31 @@ print("Getting expenses in date and cost range...")
 expenses_in_range = db.get_expenses_in_date_and_cost_range("2023-07-01", "2023-07-31", 50.00, 200.00)
 for expense in expenses_in_range:
     print(f"Expense ID: {expense.id}, Amount: {expense.amount}, Date: {expense.date}, Category: {expense.category.name}")
+    
+# Edit expense
+try:
+    print("\nEditing expense...")
+    db.edit_expense(expense_id=1, amount=150.00, date="2023-07-02", category_id=2)
+except ValueError as e:
+    print(e)  # handle error if try to edit non-existing expense or category
 
+# Get expense by id to check the edit
+print("\nGetting expense by id...")
+expense = db.get_expense_by_id(1)
+if expense is not None:
+    print(f"Expense ID: {expense.id}, Amount: {expense.amount}, Date: {expense.date}, Category: {expense.category.name}")
+else:
+    print("No expense found with this ID")
+
+# Delete expense
+try:
+    print("\nDeleting expense...")
+    db.delete_expense(expense_id=1)
+except ValueError as e:
+    print(e)  # handle error if try to delete non-existing expense
+
+# Get all expenses to check the delete
+print("\nGetting all expenses...")
+expenses = db.get_all_expenses()
+for expense in expenses:
+    print(f"Expense ID: {expense.id}, Amount: {expense.amount}, Date: {expense.date}, Category: {expense.category.name}")   
