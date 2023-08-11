@@ -42,7 +42,7 @@ for expense in expenses:
 
 # Get expense by id
 print("\nGetting expense by id...")
-expense = db.get_expense_by_id(1)
+expense = db.get_expense_by_id(2)
 print(f"Expense ID: {expense.id}, Amount: {expense.amount}, Date: {expense.date}, Category: {expense.category.name}")
 
 # Get expenses by date
