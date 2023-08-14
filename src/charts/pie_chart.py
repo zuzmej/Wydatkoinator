@@ -1,6 +1,6 @@
 # Draw pie chart. Inherit abstract class Graph
 
-from chart import Chart
+from charts.chart import Chart
 
 
 class Pie_chart(Chart):
