@@ -17,7 +17,7 @@ class Pie_chart(Chart):
 
     def draw_chart(self, expenses: list):
         series = QPieSeries()
-        category_sums = self.sum_expenenses_by_category(expenses)
+        category_sums = self.sum_expenses_by_category(expenses)
         for category_name, category_sum in category_sums.items():
             series.append(category_name, category_sum)
         series.setLabelsVisible(True)

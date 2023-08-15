@@ -24,7 +24,7 @@ class Chart(QtWidgets.QWidget, Ui_Chart, metaclass=Chart_meta):
     def draw_chart(self, expenses: list):
         pass
 
-    def sum_expenenses_by_category(self, expenses: list) -> dict:
+    def sum_expenses_by_category(self, expenses: list) -> dict:
         category_sums = {}
         for expense in expenses:
             category_name = expense.category.name
