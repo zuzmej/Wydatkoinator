@@ -4,7 +4,6 @@ sys.path.insert(0, '../')  # Dodaj katalog nadrzędny do ścieżki
 
 from src.database.database import Database
 
-from src.database.database import Database
 class Database_test(unittest.TestCase):
     db = Database("../src/database/expenses.db")
 
