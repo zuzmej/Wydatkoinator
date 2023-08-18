@@ -12,8 +12,8 @@ sys.path.insert(0, '../../')  # Dodaj katalog nadrzędny do ścieżki
 from src.database.expense import Expense
 
 class Pie_chart(Chart):
-    def __init__(self):
-        super().__init__()
+    def __init__(self,chartview):
+        super().__init__(chartview)
 
     def draw_chart(self, expenses: list):
         series = QPieSeries()
@@ -37,5 +37,6 @@ class Pie_chart(Chart):
             chart.legend().markers(series)[x].setLabel(category_name)
             x += 1
         chart.setAnimationOptions(QChart.AllAnimations)
-        self.chart.setChart(chart)
-        self.chart.setRenderHint(QPainter.Antialiasing)
+        self.chartview.setChart(chart)
+        self.chartview.setRenderHint(QPainter.Antialiasing)
+        self.chartview.show()
