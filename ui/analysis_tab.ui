@@ -35,6 +35,9 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="4" column="1">
+       <widget class="QDateEdit" name="date_from"/>
+      </item>
       <item row="0" column="0" colspan="4">
        <widget class="QLabel" name="title_select_date">
         <property name="text">
@@ -47,9 +50,6 @@
       </item>
       <item row="4" column="3">
        <widget class="QDateEdit" name="date_to"/>
-      </item>
-      <item row="4" column="1">
-       <widget class="QDateEdit" name="date_from"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="from_label">
@@ -80,20 +80,6 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QPushButton" name="show_calendar_from">
-        <property name="text">
-         <string>Pokaż kalendarz</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="3">
-       <widget class="QPushButton" name="show_calendar_to">
-        <property name="text">
-         <string>Pokaż kalendarz</string>
         </property>
        </widget>
       </item>
