@@ -85,7 +85,7 @@ class Ui_analisys_tab(object):
         self.comboBox.setObjectName("comboBox")
         self.gridLayout_3.addWidget(self.comboBox, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.select_categories, 0, 1, 1, 1)
-        self.chart = QChartView(analisys_tab)
+        self.chart = Pie_chart(analisys_tab)
         self.chart.setObjectName("chart")
         self.gridLayout.addWidget(self.chart, 2, 0, 1, 3)
         self.select_chart_type = QtWidgets.QFrame(analisys_tab)
@@ -142,4 +142,4 @@ class Ui_analisys_tab(object):
         self.radioButton_2.setText(_translate("analisys_tab", "Wykres stosowy"))
         self.label.setText(_translate("analisys_tab", "Wybierz typ wykresu"))
         self.pushButton.setText(_translate("analisys_tab", "Zatwierdź"))
-from PyQt5.QtChart import QChartView
+from src.charts.pie_chart import Pie_chart

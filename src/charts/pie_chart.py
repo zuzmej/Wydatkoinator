@@ -12,7 +12,7 @@ sys.path.insert(0, '../../')  # Dodaj katalog nadrzędny do ścieżki
 from src.database.expense import Expense
 
 class Pie_chart(Chart):
-    def __init__(self):
+    def __init__(self,x):
         super().__init__()
 
     def draw_chart(self, expenses: list):
