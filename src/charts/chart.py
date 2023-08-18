@@ -13,13 +13,12 @@ from datetime import datetime
 class Chart_meta(QtWidgets.QWidget.__class__, ABC.__class__):
     pass
 
-class Chart(QtWidgets.QWidget, Ui_Chart, metaclass=Chart_meta):
+class Chart(QtWidgets.QWidget, metaclass=Chart_meta):
 
 
-    def __init__(self):
+    def __init__(self,chartview):
         super().__init__()
-        self.setupUi(self)
-
+        self.chartview = chartview
     @abstractmethod
     def draw_chart(self, expenses: list):
         pass

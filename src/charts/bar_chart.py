@@ -4,5 +4,8 @@ from chart import Chart
 
 
 class Bar_chart(Chart):
+    def __init__(self, chartview):
+        super().__init__(chartview)
+        
     def draw_chart(self, expenses: list):
         pass
