@@ -35,8 +35,11 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="4" column="1">
+       <widget class="QDateEdit" name="date_from"/>
+      </item>
       <item row="0" column="0" colspan="4">
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="title_select_date">
         <property name="text">
          <string>Wybierz okres</string>
         </property>
@@ -46,13 +49,10 @@
        </widget>
       </item>
       <item row="4" column="3">
-       <widget class="QDateEdit" name="dateEdit_2"/>
-      </item>
-      <item row="4" column="1">
-       <widget class="QDateEdit" name="dateEdit"/>
+       <widget class="QDateEdit" name="date_to"/>
       </item>
       <item row="4" column="0">
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="from_label">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -68,7 +68,7 @@
        </widget>
       </item>
       <item row="4" column="2">
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="to">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -80,20 +80,6 @@
         </property>
         <property name="alignment">
          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="1">
-       <widget class="QPushButton" name="pushButton_2">
-        <property name="text">
-         <string>Pokaż kalendarz</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="3">
-       <widget class="QPushButton" name="pushButton_3">
-        <property name="text">
-         <string>Pokaż kalendarz</string>
         </property>
        </widget>
       </item>
@@ -122,7 +108,7 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="title_select_categories">
         <property name="text">
          <string>Wybierz kategorie</string>
         </property>
@@ -132,7 +118,7 @@
        </widget>
       </item>
       <item row="1" column="0">
-       <widget class="QComboBox" name="comboBox">
+       <widget class="QComboBox" name="categories_list">
         <property name="editable">
          <bool>false</bool>
         </property>
@@ -168,22 +154,8 @@
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="1" column="0">
-       <widget class="QRadioButton" name="radioButton">
-        <property name="text">
-         <string>Wykres kołowy</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0">
-       <widget class="QRadioButton" name="radioButton_2">
-        <property name="text">
-         <string>Wykres stosowy</string>
-        </property>
-       </widget>
-      </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="title_select_chart_type">
         <property name="text">
          <string>Wybierz typ wykresu</string>
         </property>
@@ -192,11 +164,28 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="0">
+       <widget class="QRadioButton" name="pie_chart_button">
+        <property name="text">
+         <string>Wykres kołowy</string>
+        </property>
+        <property name="checked">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QRadioButton" name="stack_chart_button">
+        <property name="text">
+         <string>Wykres stosowy</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
    </item>
    <item row="1" column="2" alignment="Qt::AlignRight">
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="confirm_button">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
