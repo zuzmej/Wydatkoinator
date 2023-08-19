@@ -1,9 +1,9 @@
 # Draw bar graphs. Inherit abstract class Graph
 
-from chart import Chart
+from .chart import Chart
 
 
-class Bar_chart(Chart):
+class Stack_chart(Chart):
     def __init__(self, chartview):
         super().__init__(chartview)
         

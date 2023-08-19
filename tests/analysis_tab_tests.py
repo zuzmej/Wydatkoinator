@@ -14,8 +14,9 @@ expenses = db.get_all_expenses()
 app = QtWidgets.QApplication(sys.argv)
 
 w = Analysis_tab()
-pie_chart = Pie_chart(w.chart)
-pie_chart.draw_chart(expenses)
+w.set_database(db)
+w.set_categires_list()
+
 w.show()
 
 sys.exit(app.exec_())   
