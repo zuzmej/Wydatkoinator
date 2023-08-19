@@ -76,8 +76,8 @@ class Database:
     
     def get_expenses_by_category_id_in_date_range(self, category_id: int, start_date: str, end_date: str):
         session = self.Session()
-        start_date = datetime.strptime(start_date, "%Y-%m-%d")
-        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+        end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
         expenses = session.query(Expense).options(joinedload(Expense.category)).filter(Expense.category_id == category_id,Expense.date.between(start_date, end_date)).all()
         session.close()
         return expenses
@@ -85,8 +85,8 @@ class Database:
     
     def get_expenses_by_category_name_in_date_range(self, category_name: str, start_date: str, end_date: str):
         session = self.Session()
-        start_date = datetime.strptime(start_date, "%Y-%m-%d")
-        end_date = datetime.strptime(end_date, "%Y-%m-%d")
+        start_date = datetime.strptime(start_date, "%Y-%m-%d").date()
+        end_date = datetime.strptime(end_date, "%Y-%m-%d").date()
         expenses = session.query(Expense).options(joinedload(Expense.category)).join(Category).filter(Category.name == category_name, Expense.date.between(start_date, end_date)).all()
         session.close()
         return expenses
