@@ -22,9 +22,7 @@ class Analysis_tab(QWidget, Ui_analisys_tab):
         self.date_to.setDate(datetime.today().date())
         self.date_from.setCalendarPopup(True)
         self.date_to.setCalendarPopup(True)
-        self.date_from.dateChanged.connect(self.get_date_from)
         self.date_from.dateChanged.connect(self.correctness_of_dates)
-        self.date_to.dateChanged.connect(self.get_date_to)
 
 
 
@@ -58,7 +56,7 @@ class Analysis_tab(QWidget, Ui_analisys_tab):
         if self.get_date_from() > self.get_date_to():
             self.date_from.setDate(self.date_to.date())
 
-    def set_categires_list(self):
+    def set_categories_list(self):
         categories = self.database.get_all_categories()
         for category in categories:
             self.combo_box.add_item(category.name)
