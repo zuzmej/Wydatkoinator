@@ -6,7 +6,7 @@ from src.tabs.analysis_tab import Analysis_tab
 
 from PyQt5 import QtWidgets
 from src.database.database import Database
-db = Database("../src/database/expenses.db")
+db = Database("expenses.db")
 
 expenses = db.get_all_expenses()
 

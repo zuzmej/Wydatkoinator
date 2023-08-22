@@ -1,7 +1,7 @@
 # Draw bar graphs. Inherit abstract class Graph
 
 from .chart import Chart
-from PyQt5.QtChart import QChart, QStackedBarSeries, QBarSet
+from PyQt5.QtChart import QChart, QStackedBarSeries, QBarSet,QBarCategoryAxis,QValueAxis
 from PyQt5.QtGui import QPainter
 from PyQt5.QtCore import Qt
 
@@ -22,20 +22,6 @@ class Stack_chart(Chart):
         return date1.year == date2.year and date1.month == date2.month
 
 
-    # def get_months_between_dates(self, date1, date2):
-    #     months = []
-    #     current_date = date1
-
-    #     while current_date <= date2:
-    #         months.append(current_date.strftime('%Y-%m'))
-    #         current_date += timedelta(days=1)  # Dodawanie jednego dnia do daty
-    #         if current_date.day == 1:  # Sprawdzamy, czy przeskoczyliśmy na kolejny miesiąc
-    #             current_date = current_date.replace(day=1)
-    #             if current_date.month == 12:
-    #                 current_date = current_date.replace(year=current_date.year + 1, month=1)
-    #             else:
-    #                 current_date = current_date.replace(month=current_date.month + 1)    
-    #     return months
 
     def separate_weeks(self, date1, date2) -> dict:     #rozdzielenie przedziału czasowego na tygodnie
         pass
@@ -77,47 +63,43 @@ class Stack_chart(Chart):
             for start_date, end_date in separated_months.items():
                 sums = self.sum_expenses_by_category_in_date_range(expenses, start_date, end_date)
                 for category, bar_set in sets.items():
-                    if category in bar_set:
-                        bar_set.append(sums[category])
-                    else:
-                        bar_set.append(0)
-                series.append(bar_set)
+                   if category in sums:
+                       print("true")
+                       bar_set.append(sums[category])
+                   else:
+                       bar_set.append(0)
+                       print("false")
+
+
+
                 #     category = expense.category.name
                 #     sets[category].append(10)
-                
-                # for category, bar_set in sets.items():
-                #     series.append(bar_set)         
+        categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_months.items()]
+        
+
 
        
 
-        # 
 
-        # for category_name, month_data in month_sums.items():
-        #     set = QBarSet(category_name)
-        #     for month in months:
-        #         category_sum = month_data.get(month, 0)
-        #         set.append(float(category_sum))
-        #     series.append(set)        
+        for category, bar_set in sets.items():
+            series.append(bar_set)         
 
-
-
-        # for category_name in month_sums.values():
-        #     for month in month_sums.keys():
-        #         set = QBarSet(month)
-        #         category_sum = month_sums.get(month, 0)
-        #         set.append(float(category_sum))
-        #         series.append(set)
+        series.setLabelsVisible(True)
         
-        # for name, amount in category_sums.items():
-        #     set = QBarSet(name)
-        #     set.append(amount)
-        #     series.append(set)
 
         # Tworzenie wykresu
         chart = QChart()
         chart.addSeries(series)
-        chart.createDefaultAxes()
-        chart.setTitle("Stacked Bar Chart")
+        axisX = QBarCategoryAxis()
+        axisX.append(categories)
+        chart.addAxis(axisX, Qt.AlignBottom)
+        series.attachAxis(axisX)
+        axisY = QValueAxis()  # Step 1: Create Y axis instance
+        axisY.setTitleText("Kwota [zł]")  # Optional title for the Y axis
+        axisY.setLabelFormat("%i")  # Step 2: Setting label format (integer in this case)
+        chart.addAxis(axisY, Qt.AlignLeft)  # Step 3: Add Y axis to the chart
+        series.attachAxis(axisY)  # Step 4: Attach Y axis to the series
+        chart.setTitle("Wydatki w poszczególnych kategoriach w wybranych przedziałach czasowych")
         
         # Dodawanie wykresu do QChartView
         chart.setAnimationOptions(QChart.AllAnimations)
