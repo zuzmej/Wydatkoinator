@@ -23,8 +23,19 @@ class Stack_chart(Chart):
 
 
 
-    def separate_weeks(self, date1, date2) -> dict:     #rozdzielenie przedziału czasowego na tygodnie
-        pass
+    def separate_weeks(self, start_date, end_date) -> dict:     #rozdzielenie przedziału czasowego na tygodnie
+        result_dates = {}
+        while (start_date <= end_date):
+            week_end  = start_date + timedelta(days=6)
+            
+            if week_end > end_date:
+                week_end = end_date
+
+            result_dates[start_date] = week_end
+
+            start_date = week_end + timedelta(days=1)
+
+        return result_dates
 
 
 
@@ -58,9 +69,8 @@ class Stack_chart(Chart):
 
         if self.check_dates(oldest, youngest):  # jeżeli dotyczą tego samego miesiąca
             print("daty dot. tego samego miesiąca")
-        else:       # jeżeli dotyczą różnych miesięcy 
-            separated_months = self.separate_months(oldest, youngest)
-            for start_date, end_date in separated_months.items():
+            separated_weeks = self.separate_weeks(oldest, youngest)
+            for start_date, end_date in separated_weeks.items():
                 sums = self.sum_expenses_by_category_in_date_range(expenses, start_date, end_date)
                 for category, bar_set in sets.items():
                    if category in sums:
@@ -69,24 +79,26 @@ class Stack_chart(Chart):
                    else:
                        bar_set.append(0)
                        print("false")
-
-
-
-                #     category = expense.category.name
-                #     sets[category].append(10)
-        categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_months.items()]
-        
-
-
-       
-
+            categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_weeks.items()]
+        else:       # jeżeli dotyczą różnych miesięcy 
+            separated_months = self.separate_months(oldest, youngest)
+            for start_date, end_date in separated_months.items():
+                sums = self.sum_expenses_by_category_in_date_range(expenses, start_date, end_date)  #sumuj względem kategorii tylko w jednym miesiącu
+                for category, bar_set in sets.items():
+                   if category in sums:
+                       print("true")
+                       bar_set.append(sums[category])
+                   else:
+                       bar_set.append(0)
+                       print("false")
+            categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_months.items()]
 
         for category, bar_set in sets.items():
             series.append(bar_set)         
 
-        series.setLabelsVisible(True)
-        
 
+
+        series.setLabelsVisible(True)
         # Tworzenie wykresu
         chart = QChart()
         chart.addSeries(series)
@@ -94,11 +106,11 @@ class Stack_chart(Chart):
         axisX.append(categories)
         chart.addAxis(axisX, Qt.AlignBottom)
         series.attachAxis(axisX)
-        axisY = QValueAxis()  # Step 1: Create Y axis instance
-        axisY.setTitleText("Kwota [zł]")  # Optional title for the Y axis
-        axisY.setLabelFormat("%i")  # Step 2: Setting label format (integer in this case)
-        chart.addAxis(axisY, Qt.AlignLeft)  # Step 3: Add Y axis to the chart
-        series.attachAxis(axisY)  # Step 4: Attach Y axis to the series
+        axisY = QValueAxis()  
+        axisY.setTitleText("Kwota [zł]") 
+        axisY.setLabelFormat("%i")  
+        chart.addAxis(axisY, Qt.AlignLeft) 
+        series.attachAxis(axisY) 
         chart.setTitle("Wydatki w poszczególnych kategoriach w wybranych przedziałach czasowych")
         
         # Dodawanie wykresu do QChartView
