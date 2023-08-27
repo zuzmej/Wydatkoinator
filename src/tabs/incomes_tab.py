@@ -16,8 +16,15 @@ class Incomes_tab(QWidget, Ui_incomes_tab):
 
     def set_database(self, database: Database):
         self.database = database
+
     def set_incomes_list(self):
-        incomes = ['dfdfd',"dfdfdf","dfdfdf","dfdfdf","d"]
+        try:
+            self.database.add_category("Wpływy")
+        except ValueError as e:
+            print(e)
+        start_date =datetime.today().date() - timedelta(weeks = 12)
+        end_date = datetime.today().date()
+        incomes = self.database.get_expenses_by_category_name_in_date_range("Wpływy",start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d"))
         for income in incomes:
             self.incomes_list.addItem(income)
 
