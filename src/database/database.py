@@ -47,6 +47,17 @@ class Database:
         session.close()
         return category
     
+    def get_category_id_by_name(self, category_name: str) -> int:
+        session = self.Session()
+        category = session.query(Category).filter_by(name=category_name).first()
+        session.close()
+        
+        if not category:
+            raise ValueError(f"No category found with name {category_name}")
+
+        return category.id
+
+    
     def get_all_expenses(self):
         session = self.Session()
         expenses = session.query(Expense).options(joinedload(Expense.category)).all()
