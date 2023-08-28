@@ -3,6 +3,8 @@ from datetime import datetime, timedelta
 from src.ui.expenses_tab import Ui_expenses_tab
 from src.database.database import Database
 from PyQt5.QtGui import QDoubleValidator
+from PyQt5.QtCore import Qt
+from src.tabs.add_new_category import Add_new_category
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -28,13 +30,21 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         categories = self.database.get_all_categories()
         category_names = [category.name for category in categories]
         self.categories_combobox.addItems(category_names)
-        self.categories_list_list.addItems(category_names)
 
+        self.categories_list_list.addItems(category_names)
+        self.categories_list_list.setSpacing(20)
+
+    def clear_categories_list(self):
+        self.categories_combobox.clear()
+        self.categories_list_list.clear()
 
     def add_new_category(self):     # dodawanie nowej kategorii po nacisnieciu przycisku
-        pass
-        #self.database.add_category()
-        # tworzenie nowego okna dialogowego
+        add_new_category_dialog = Add_new_category()
+        add_new_category_dialog.exec_() # wyświetlenie okna dialogowego
+        if add_new_category_dialog.add_category_line_edit.text().strip():   # sprawdzenie czy został wprowadzony tekst, ktory nie jest bialymi znakami
+            self.database.add_category(add_new_category_dialog.add_category_line_edit.text())
+            self.clear_categories_list()
+            self.set_categories_list()
 
     def delete_category(self):  # usuwanie nowej kategorii po nacisnieciu przycisku
         pass
