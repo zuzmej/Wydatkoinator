@@ -43,7 +43,10 @@ class Ui_expenses_tab(object):
 "QDateEdit {\n"
 "background-color: #3e3e3e;\n"
 "color: #c8beb7;\n"
-"}")
+"}\n"
+"\n"
+"QListWidget { color: #c8beb7; }\n"
+"")
         self.gridLayout = QtWidgets.QGridLayout(expenses_tab)
         self.gridLayout.setObjectName("gridLayout")
         spacerItem = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
@@ -134,6 +137,16 @@ class Ui_expenses_tab(object):
         self.gridLayout_4 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_4.setObjectName("gridLayout_4")
         self.categories_list_list = QtWidgets.QListWidget(self.scrollAreaWidgetContents)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.categories_list_list.sizePolicy().hasHeightForWidth())
+        self.categories_list_list.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.categories_list_list.setFont(font)
+        self.categories_list_list.setAlternatingRowColors(False)
+        self.categories_list_list.setItemAlignment(QtCore.Qt.AlignCenter)
         self.categories_list_list.setObjectName("categories_list_list")
         self.gridLayout_4.addWidget(self.categories_list_list, 0, 0, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)

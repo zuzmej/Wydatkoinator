@@ -28,10 +28,13 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         categories = self.database.get_all_categories()
         category_names = [category.name for category in categories]
         self.categories_combobox.addItems(category_names)
+        self.categories_list_list.addItems(category_names)
 
 
     def add_new_category(self):     # dodawanie nowej kategorii po nacisnieciu przycisku
         pass
+        #self.database.add_category()
+        # tworzenie nowego okna dialogowego
 
     def delete_category(self):  # usuwanie nowej kategorii po nacisnieciu przycisku
         pass
@@ -39,12 +42,8 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
     def confirm_and_write_to_database(self):    # wpisywanie do bazy danych po zatwierdzeniu danych 
         if self.amount_line_edit.text():    # sprawdzenie czy pole z kwotą zostało wypełnione
             date_edit_str = self.date_edit.date().toString("yyyy-MM-dd")
-            self.database.add_expense(float(self.amount_line_edit.text()), date_edit_str, self.categories_combobox.currentIndex()+1)
-            
-            
-
-    # jesli sa wszystkie wypelnione pola
-    #data, kwota, kategoria
+            self.database.add_expense(float(self.amount_line_edit.text().replace(',', '.')), date_edit_str, self.categories_combobox.currentIndex()+1)
+            self.amount_line_edit.clear()
 
 
     def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv -- przemyslec
