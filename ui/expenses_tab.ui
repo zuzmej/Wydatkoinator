@@ -176,7 +176,7 @@ QListWidget { color: #c8beb7; }
       <item row="5" column="1" colspan="2" alignment="Qt::AlignRight|Qt::AlignBottom">
        <widget class="QPushButton" name="ok_button_csv">
         <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -359,7 +359,7 @@ QListWidget { color: #c8beb7; }
        <widget class="QLabel" name="category_label">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="text">
@@ -380,7 +380,7 @@ QListWidget { color: #c8beb7; }
         </property>
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="text">
@@ -405,8 +405,13 @@ QListWidget { color: #c8beb7; }
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>50</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QCalendarWidget QWidget { background-color: #c8beb7; }	/* calosc */ 
@@ -487,7 +492,7 @@ QCalendarWidget QSpinBox {
        <widget class="QPushButton" name="ok_button">
         <property name="minimumSize">
          <size>
-          <width>0</width>
+          <width>216</width>
           <height>30</height>
          </size>
         </property>
@@ -505,7 +510,7 @@ QCalendarWidget QSpinBox {
        <widget class="QLabel" name="amount_label">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="text">
@@ -518,8 +523,13 @@ QCalendarWidget QSpinBox {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>50</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
         </property>
        </widget>
       </item>
@@ -555,8 +565,13 @@ QCalendarWidget QSpinBox {
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>40</height>
+          <height>50</height>
          </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>16</pointsize>
+         </font>
         </property>
        </widget>
       </item>

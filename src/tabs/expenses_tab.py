@@ -5,6 +5,7 @@ from src.database.database import Database
 from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtCore import Qt
 from src.tabs.add_new_category import Add_new_category
+from src.tabs.delete_category import Delete_category
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -40,14 +41,22 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
 
     def add_new_category(self):     # dodawanie nowej kategorii po nacisnieciu przycisku
         add_new_category_dialog = Add_new_category()
-        add_new_category_dialog.exec_() # wyświetlenie okna dialogowego
+        add_new_category_dialog.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
         if add_new_category_dialog.add_category_line_edit.text().strip():   # sprawdzenie czy został wprowadzony tekst, ktory nie jest bialymi znakami
             self.database.add_category(add_new_category_dialog.add_category_line_edit.text())
             self.clear_categories_list()
             self.set_categories_list()
 
     def delete_category(self):  # usuwanie nowej kategorii po nacisnieciu przycisku
-        pass
+        delete_category = Delete_category() 
+        categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
+        category_names = [category.name for category in categories]
+        delete_category.delete_category_combobox.addItems(category_names)
+        delete_category.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
+        
+
+
+
         
     def confirm_and_write_to_database(self):    # wpisywanie do bazy danych po zatwierdzeniu danych 
         if self.amount_line_edit.text():    # sprawdzenie czy pole z kwotą zostało wypełnione

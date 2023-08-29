@@ -22,7 +22,12 @@ class Ui_delete_category_dialog(object):
 "\n"
 "QComboBox{ \n"
 "    color: #c8beb7;\n"
-"    background-color: #3e3e3e\n"
+"    background-color: #3e3e3e;\n"
+"}\n"
+"\n"
+"QComboBox QAbstractItemView {    /* zmiana kolorów listy rozwijanej */\n"
+"    background-color: #202020;\n"
+"    color: #c8beb7;\n"
 "}\n"
 "\n"
 "QDialogButtonBox QPushButton {\n"
@@ -70,4 +75,4 @@ class Ui_delete_category_dialog(object):
     def retranslateUi(self, delete_category_dialog):
         _translate = QtCore.QCoreApplication.translate
         delete_category_dialog.setWindowTitle(_translate("delete_category_dialog", "Dialog"))
-        self.label.setText(_translate("delete_category_dialog", "Wybierz kategorie, które chcesz usunąć:"))
+        self.label.setText(_translate("delete_category_dialog", "Wybierz kategorię, którą chcesz usunąć:"))
