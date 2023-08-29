@@ -6,6 +6,7 @@ from PyQt5.QtGui import QDoubleValidator
 from PyQt5.QtCore import Qt
 from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
+from src.tabs.change_category_name_dialog import Change_category_name_dialog
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -19,6 +20,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         self.amount_line_edit.setValidator(validator)
 
         self.add_category_button.clicked.connect(self.add_new_category)
+        self.change_category_button.clicked.connect(self.change_category_name)
         self.delete_category_button.clicked.connect(self.delete_category)
         self.ok_button.clicked.connect(self.confirm_and_write_to_database)
         self.ok_button_csv.clicked.connect(self.csv_read)
@@ -57,9 +59,26 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         self.clear_categories_list()
         self.set_categories_list()
 
-
-
+    def change_category_name(self):
+        print("klikniety")
+        change_category_name_dialog = Change_category_name_dialog()
+        categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
+        category_names = [category.name for category in categories]
+        change_category_name_dialog.change_category_combobox.addItems(category_names)
+        change_category_name_dialog.exec_()
+        print(change_category_name_dialog.change_category_combobox.currentIndex()+1)
+        print(change_category_name_dialog.change_category_line_edit.text())
+        # self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentIndex()+1, change_category_name_dialog.change_category_line_edit.text())
+        # self.clear_categories_list()
+        # self.set_categories_list()
         
+
+
+
+
+
+
+
     def confirm_and_write_to_database(self):    # wpisywanie do bazy danych po zatwierdzeniu danych 
         if self.amount_line_edit.text():    # sprawdzenie czy pole z kwotą zostało wypełnione
             date_edit_str = self.date_edit.date().toString("yyyy-MM-dd")

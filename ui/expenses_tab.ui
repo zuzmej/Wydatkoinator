@@ -221,7 +221,7 @@ QListWidget { color: #c8beb7; }
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_5">
-      <item row="0" column="0" colspan="2">
+      <item row="0" column="0" colspan="3">
        <widget class="QLabel" name="categories_list_label">
         <property name="font">
          <font>
@@ -236,7 +236,55 @@ QListWidget { color: #c8beb7; }
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="2">
+      <item row="5" column="0">
+       <widget class="QPushButton" name="add_category_button">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Dodaj kategorię</string>
+        </property>
+        <property name="checkable">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QPushButton" name="delete_category_button">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Usuń kategorię</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
        <widget class="QScrollArea" name="scrollArea">
         <property name="widgetResizable">
          <bool>true</bool>
@@ -246,8 +294,8 @@ QListWidget { color: #c8beb7; }
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>378</width>
-           <height>577</height>
+           <width>490</width>
+           <height>579</height>
           </rect>
          </property>
          <layout class="QGridLayout" name="gridLayout_4">
@@ -279,8 +327,8 @@ QListWidget { color: #c8beb7; }
         </widget>
        </widget>
       </item>
-      <item row="2" column="0">
-       <widget class="QPushButton" name="add_category_button">
+      <item row="5" column="1">
+       <widget class="QPushButton" name="change_category_button">
         <property name="minimumSize">
          <size>
           <width>0</width>
@@ -289,29 +337,11 @@ QListWidget { color: #c8beb7; }
         </property>
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>14</pointsize>
          </font>
         </property>
         <property name="text">
-         <string>Dodaj kategorię</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1">
-       <widget class="QPushButton" name="delete_category_button">
-        <property name="minimumSize">
-         <size>
-          <width>0</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <pointsize>16</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Usuń kategorię</string>
+         <string>Zmień nazwę kategorii</string>
         </property>
        </widget>
       </item>
