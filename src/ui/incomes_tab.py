@@ -32,6 +32,10 @@ class Ui_incomes_tab(object):
 "QLineEdit{\n"
 "background-color:#182B32;\n"
 "color:#C8BEB7;\n"
+"}\n"
+"QDateEdit{\n"
+"background-color:#182B32;\n"
+"color:#C8BEB7;\n"
 "}")
         self.gridLayout = QtWidgets.QGridLayout(incomes_tab)
         self.gridLayout.setObjectName("gridLayout")
@@ -61,8 +65,34 @@ class Ui_incomes_tab(object):
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.gridLayout_4 = QtWidgets.QGridLayout(self.scrollAreaWidgetContents)
         self.gridLayout_4.setObjectName("gridLayout_4")
-        self.incomes_list = QtWidgets.QListWidget(self.scrollAreaWidgetContents)
+        self.incomes_list = QtWidgets.QTableWidget(self.scrollAreaWidgetContents)
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.incomes_list.setFont(font)
+        self.incomes_list.setStyleSheet("QHeaderView::section {\n"
+"    background-color: transparent;  /* brak tła */\n"
+"    color:#C8BEB7;  /* kolor napisu */\n"
+"    border: none;  /* brak ramki */\n"
+" font-size: 20px;  /* Ustawienie rozmiaru czcionki */\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    font-size: 20px;\n"
+"     color:#C8BEB7\n"
+"}")
+        self.incomes_list.setTextElideMode(QtCore.Qt.ElideRight)
+        self.incomes_list.setShowGrid(False)
+        self.incomes_list.setRowCount(0)
+        self.incomes_list.setColumnCount(2)
         self.incomes_list.setObjectName("incomes_list")
+        self.incomes_list.horizontalHeader().setVisible(True)
+        self.incomes_list.horizontalHeader().setCascadingSectionResizes(False)
+        self.incomes_list.horizontalHeader().setSortIndicatorShown(False)
+        self.incomes_list.horizontalHeader().setStretchLastSection(False)
+        self.incomes_list.verticalHeader().setVisible(False)
+        self.incomes_list.verticalHeader().setCascadingSectionResizes(False)
+        self.incomes_list.verticalHeader().setHighlightSections(True)
+        self.incomes_list.verticalHeader().setStretchLastSection(False)
         self.gridLayout_4.addWidget(self.incomes_list, 0, 0, 1, 1)
         self.scrollArea.setWidget(self.scrollAreaWidgetContents)
         self.gridLayout_2.addWidget(self.scrollArea, 1, 0, 1, 1)
@@ -92,6 +122,17 @@ class Ui_incomes_tab(object):
         self.frame_2.setObjectName("frame_2")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.frame_2)
         self.gridLayout_3.setObjectName("gridLayout_3")
+        self.label_3 = QtWidgets.QLabel(self.frame_2)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        self.label_3.setSizePolicy(sizePolicy)
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.gridLayout_3.addWidget(self.label_3, 1, 4, 1, 1)
         self.label_2 = QtWidgets.QLabel(self.frame_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -104,17 +145,13 @@ class Ui_incomes_tab(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.gridLayout_3.addWidget(self.label_2, 0, 0, 1, 3)
-        self.label_3 = QtWidgets.QLabel(self.frame_2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
-        self.label_3.setSizePolicy(sizePolicy)
+        self.confirm_button = QtWidgets.QPushButton(self.frame_2)
+        self.confirm_button.setMinimumSize(QtCore.QSize(0, 30))
         font = QtGui.QFont()
         font.setPointSize(16)
-        self.label_3.setFont(font)
-        self.label_3.setObjectName("label_3")
-        self.gridLayout_3.addWidget(self.label_3, 1, 3, 1, 1)
+        self.confirm_button.setFont(font)
+        self.confirm_button.setObjectName("confirm_button")
+        self.gridLayout_3.addWidget(self.confirm_button, 2, 2, 1, 1)
         self.lineEdit = QtWidgets.QLineEdit(self.frame_2)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -124,14 +161,12 @@ class Ui_incomes_tab(object):
         self.lineEdit.setMinimumSize(QtCore.QSize(0, 40))
         self.lineEdit.setClearButtonEnabled(True)
         self.lineEdit.setObjectName("lineEdit")
-        self.gridLayout_3.addWidget(self.lineEdit, 1, 0, 1, 3)
-        self.confirm_button = QtWidgets.QPushButton(self.frame_2)
-        self.confirm_button.setMinimumSize(QtCore.QSize(0, 30))
-        font = QtGui.QFont()
-        font.setPointSize(16)
-        self.confirm_button.setFont(font)
-        self.confirm_button.setObjectName("confirm_button")
-        self.gridLayout_3.addWidget(self.confirm_button, 2, 2, 1, 1)
+        self.gridLayout_3.addWidget(self.lineEdit, 1, 1, 1, 2)
+        self.date = QtWidgets.QDateEdit(self.frame_2)
+        self.date.setMinimumSize(QtCore.QSize(0, 40))
+        self.date.setCalendarPopup(True)
+        self.date.setObjectName("date")
+        self.gridLayout_3.addWidget(self.date, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 1)
 
         self.retranslateUi(incomes_tab)
@@ -141,6 +176,6 @@ class Ui_incomes_tab(object):
         _translate = QtCore.QCoreApplication.translate
         incomes_tab.setWindowTitle(_translate("incomes_tab", "Form"))
         self.label.setText(_translate("incomes_tab", "Ostatnie wpływy"))
-        self.label_2.setText(_translate("incomes_tab", "Dodaj wpływ "))
         self.label_3.setText(_translate("incomes_tab", "zł"))
+        self.label_2.setText(_translate("incomes_tab", "Dodaj wpływ "))
         self.confirm_button.setText(_translate("incomes_tab", "Zatwierdź"))
