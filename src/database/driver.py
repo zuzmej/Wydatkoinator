@@ -13,8 +13,8 @@ try:
 except ValueError as e:
     print(e)  # handle error if category already exists
 
+# Add expenses
 try:
-    # Add expenses
     print("\nAdding expenses...")
     db.add_expense(amount=100.50, date="2023-07-01", category_id=1)
     db.add_expense(amount=800.00, date="2023-07-05", category_id=2)
@@ -101,3 +101,29 @@ print("\nGetting all expenses...")
 expenses = db.get_all_expenses()
 for expense in expenses:
     print(f"Expense ID: {expense.id}, Amount: {expense.amount}, Date: {expense.date}, Category: {expense.category.name}")   
+
+# Delete category
+try:
+    print("\nDeleting category...")
+    db.delete_category("Rent")
+except ValueError as e:
+    print(e)
+
+# Get all categories
+print("\nGetting all categories...")
+categories = db.get_all_categories()
+for category in categories:
+    print(category.name)
+
+# Change category name
+try:
+    print("\nChanging category name...")
+    db.change_category_name(1, "Food")
+except ValueError as e:
+    print(e) 
+
+# Get all categories
+print("\nGetting all categories...")
+categories = db.get_all_categories()
+for category in categories:
+    print(category.name)
