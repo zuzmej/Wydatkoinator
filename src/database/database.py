@@ -34,18 +34,16 @@ class Database:
         session.commit()
         session.close()
 
-
-    def change_category_name(self, category_id: int, category_new_name: str):
+    def change_category_name(self, category_name: str, category_new_name: str):
         session = self.Session()
-        category_to_update = session.query(Category).filter_by(id=category_id).first()
+        category_to_update = session.query(Category).filter_by(name=category_name).first()
 
         if not category_to_update:
-            raise ValueError(f"No category found with id {category_id}")
+            raise ValueError(f"No category found with name {category_name}")
         
         category_to_update.name = category_new_name
         session.commit()
         session.close()
-
 
     def add_expense(self, amount: float, date: str, category_id: int):
         session = self.Session()

@@ -118,7 +118,7 @@ for category in categories:
 # Change category name
 try:
     print("\nChanging category name...")
-    db.change_category_name(1, "Food")
+    db.change_category_name("Groceries", "Food")
 except ValueError as e:
     print(e) 
 
