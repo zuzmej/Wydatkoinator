@@ -80,8 +80,14 @@ class Ui_incomes_tab(object):
 "    font-size: 20px;\n"
 "     color:#C8BEB7\n"
 "}")
+        self.incomes_list.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.incomes_list.setTabKeyNavigation(False)
+        self.incomes_list.setProperty("showDropIndicator", False)
+        self.incomes_list.setDragDropOverwriteMode(False)
         self.incomes_list.setTextElideMode(QtCore.Qt.ElideRight)
         self.incomes_list.setShowGrid(False)
+        self.incomes_list.setWordWrap(False)
+        self.incomes_list.setCornerButtonEnabled(False)
         self.incomes_list.setRowCount(0)
         self.incomes_list.setColumnCount(2)
         self.incomes_list.setObjectName("incomes_list")
@@ -164,6 +170,11 @@ class Ui_incomes_tab(object):
         self.gridLayout_3.addWidget(self.lineEdit, 1, 1, 1, 2)
         self.date = QtWidgets.QDateEdit(self.frame_2)
         self.date.setMinimumSize(QtCore.QSize(0, 40))
+        self.date.setStyleSheet("QCalendarWidget QWidget { background-color: #c8beb7; }    /* calosc */ \n"
+"\n"
+"QCalendarWidget QWidget { alternate-background-color: #c8beb7; } /* naglowek z nazwami dni */\n"
+"\n"
+"QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionka*/")
         self.date.setCalendarPopup(True)
         self.date.setObjectName("date")
         self.gridLayout_3.addWidget(self.date, 1, 0, 1, 1)
