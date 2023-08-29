@@ -66,11 +66,9 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         category_names = [category.name for category in categories]
         change_category_name_dialog.change_category_combobox.addItems(category_names)
         change_category_name_dialog.exec_()
-        print(change_category_name_dialog.change_category_combobox.currentIndex()+1)
-        print(change_category_name_dialog.change_category_line_edit.text())
-        # self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentIndex()+1, change_category_name_dialog.change_category_line_edit.text())
-        # self.clear_categories_list()
-        # self.set_categories_list()
+        self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentText(), change_category_name_dialog.change_category_line_edit.text())
+        self.clear_categories_list()
+        self.set_categories_list()
         
 
 
