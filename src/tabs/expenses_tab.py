@@ -53,7 +53,9 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         category_names = [category.name for category in categories]
         delete_category.delete_category_combobox.addItems(category_names)
         delete_category.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
-        
+        self.database.delete_category(delete_category.delete_category_combobox.currentText())
+        self.clear_categories_list()
+        self.set_categories_list()
 
 
 
