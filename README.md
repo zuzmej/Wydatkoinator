@@ -22,5 +22,8 @@ sudo apt-get install sqlite3
 ```
 
 # Build
-```
+In directory "build":
+```bash
+cmake ..
+make
 ```
