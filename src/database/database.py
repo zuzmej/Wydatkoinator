@@ -57,6 +57,16 @@ class Database:
         session.commit()
         session.close()
     
+    def get_category_id_by_name(self, category_name: str) -> int:
+        session = self.Session()
+        category = session.query(Category).filter_by(name=category_name).first()
+        session.close()
+        
+        if not category:
+            raise ValueError(f"No category found with name {category_name}")
+
+        return category.id
+
     def get_all_categories(self):
         session = self.Session()
         categories = session.query(Category).all()
