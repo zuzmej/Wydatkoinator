@@ -43,21 +43,23 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
 
     def add_new_category(self):     # dodawanie nowej kategorii po nacisnieciu przycisku
         add_new_category_dialog = Add_new_category()
-        add_new_category_dialog.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
-        if add_new_category_dialog.add_category_line_edit.text().strip():   # sprawdzenie czy został wprowadzony tekst, ktory nie jest bialymi znakami
-            self.database.add_category(add_new_category_dialog.add_category_line_edit.text())
-            self.clear_categories_list()
-            self.set_categories_list()
+        result = add_new_category_dialog.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
+        if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
+            if add_new_category_dialog.add_category_line_edit.text().strip():   # sprawdzenie czy został wprowadzony tekst, ktory nie jest bialymi znakami
+                self.database.add_category(add_new_category_dialog.add_category_line_edit.text())
+                self.clear_categories_list()
+                self.set_categories_list()
 
     def delete_category(self):  # usuwanie nowej kategorii po nacisnieciu przycisku
         delete_category = Delete_category() 
         categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
         category_names = [category.name for category in categories]
         delete_category.delete_category_combobox.addItems(category_names)
-        delete_category.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
-        self.database.delete_category(delete_category.delete_category_combobox.currentText())
-        self.clear_categories_list()
-        self.set_categories_list()
+        result = delete_category.exec_() # wyświetlenie okna dialogowego z wstrzymaniem dzialania reszty aplikacji
+        if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
+            self.database.delete_category(delete_category.delete_category_combobox.currentText())
+            self.clear_categories_list()
+            self.set_categories_list()
 
     def change_category_name(self):
         print("klikniety")
@@ -65,10 +67,11 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
         category_names = [category.name for category in categories]
         change_category_name_dialog.change_category_combobox.addItems(category_names)
-        change_category_name_dialog.exec_()
-        self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentText(), change_category_name_dialog.change_category_line_edit.text())
-        self.clear_categories_list()
-        self.set_categories_list()
+        result = change_category_name_dialog.exec_()
+        if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
+            self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentText(), change_category_name_dialog.change_category_line_edit.text())
+            self.clear_categories_list()
+            self.set_categories_list()
         
 
 
