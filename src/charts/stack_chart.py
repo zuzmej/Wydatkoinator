@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 class Stack_chart(Chart):
     def __init__(self, chartview):
         super().__init__(chartview)
+        
 
 
     def check_dates(self, date1, date2):  # metoda do sprawdzania czy daty wybrane przez użytkownika dotyczą tego samego miesiąca
@@ -37,7 +38,15 @@ class Stack_chart(Chart):
 
         return result_dates
 
-
+    def _on_bar_hovered(self, status, index):
+        """Obsługuje zdarzenie najechania myszą na segment wykresu."""
+        if status:
+            bar_set = self.sender()
+            category_name = bar_set.label()
+            value = bar_set.at(index)
+            self.chartview.setToolTip(f"Kategoria: {category_name}\nKwota: {value:.2f} zł")
+        else:
+            self.chartview.setToolTip("")
 
 
 
@@ -78,6 +87,7 @@ class Stack_chart(Chart):
             categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_months.items()]
 
         for category, bar_set in sets.items():
+            bar_set.hovered.connect(self._on_bar_hovered)
             series.append(bar_set)         
 
 
