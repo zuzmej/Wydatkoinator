@@ -21,6 +21,9 @@ class Ui_incomes_tab(object):
 "QFrame{\n"
 "background-color: #252525;\n"
 "}\n"
+"#chart{\n"
+"background-color: #252525;\n"
+"}\n"
 "\n"
 "QLabel{\n"
 "color:#C8BEB7;\n"
@@ -115,11 +118,6 @@ class Ui_incomes_tab(object):
         self.label.setObjectName("label")
         self.gridLayout_2.addWidget(self.label, 0, 0, 1, 1)
         self.gridLayout.addWidget(self.frame, 0, 0, 3, 1)
-        self.frame_3 = QtWidgets.QFrame(incomes_tab)
-        self.frame_3.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame_3.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.frame_3.setObjectName("frame_3")
-        self.gridLayout.addWidget(self.frame_3, 2, 2, 1, 1)
         spacerItem1 = QtWidgets.QSpacerItem(35, 20, QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem1, 0, 1, 1, 1)
         self.frame_2 = QtWidgets.QFrame(incomes_tab)
@@ -170,6 +168,9 @@ class Ui_incomes_tab(object):
         self.gridLayout_3.addWidget(self.lineEdit, 1, 1, 1, 2)
         self.date = QtWidgets.QDateEdit(self.frame_2)
         self.date.setMinimumSize(QtCore.QSize(0, 40))
+        font = QtGui.QFont()
+        font.setPointSize(15)
+        self.date.setFont(font)
         self.date.setStyleSheet("QCalendarWidget QWidget { background-color: #c8beb7; }    /* calosc */ \n"
 "\n"
 "QCalendarWidget QWidget { alternate-background-color: #c8beb7; } /* naglowek z nazwami dni */\n"
@@ -179,6 +180,14 @@ class Ui_incomes_tab(object):
         self.date.setObjectName("date")
         self.gridLayout_3.addWidget(self.date, 1, 0, 1, 1)
         self.gridLayout.addWidget(self.frame_2, 0, 2, 1, 1)
+        self.chart = QChartView(incomes_tab)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.chart.sizePolicy().hasHeightForWidth())
+        self.chart.setSizePolicy(sizePolicy)
+        self.chart.setObjectName("chart")
+        self.gridLayout.addWidget(self.chart, 2, 2, 1, 1)
 
         self.retranslateUi(incomes_tab)
         QtCore.QMetaObject.connectSlotsByName(incomes_tab)
@@ -190,3 +199,4 @@ class Ui_incomes_tab(object):
         self.label_3.setText(_translate("incomes_tab", "zł"))
         self.label_2.setText(_translate("incomes_tab", "Dodaj wpływ "))
         self.confirm_button.setText(_translate("incomes_tab", "Zatwierdź"))
+from PyQt5.QtChart import QChartView

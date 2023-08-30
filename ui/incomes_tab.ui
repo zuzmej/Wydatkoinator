@@ -20,6 +20,9 @@ background-color: #202020;
 QFrame{
 background-color: #252525;
 }
+#chart{
+background-color: #252525;
+}
 
 QLabel{
 color:#C8BEB7;
@@ -196,16 +199,6 @@ QTableWidget::item {
      </layout>
     </widget>
    </item>
-   <item row="2" column="2">
-    <widget class="QFrame" name="frame_3">
-     <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
-     </property>
-     <property name="frameShadow">
-      <enum>QFrame::Raised</enum>
-     </property>
-    </widget>
-   </item>
    <item row="0" column="1">
     <spacer name="horizontalSpacer">
      <property name="orientation">
@@ -315,6 +308,11 @@ QTableWidget::item {
           <height>40</height>
          </size>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>15</pointsize>
+         </font>
+        </property>
         <property name="styleSheet">
          <string notr="true">QCalendarWidget QWidget { background-color: #c8beb7; }    /* calosc */ 
 
@@ -330,8 +328,26 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
      </layout>
     </widget>
    </item>
+   <item row="2" column="2">
+    <widget class="QChartView" name="chart" native="true">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends>
+   <header>PyQt5.QtChart</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

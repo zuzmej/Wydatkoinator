@@ -14,6 +14,7 @@ app = QtWidgets.QApplication(sys.argv)
 w = Incomes_tab()
 w.set_database(db)
 w.set_incomes_list()
+w.show_chart()
 
 w.show()
 
