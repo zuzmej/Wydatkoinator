@@ -7,6 +7,7 @@ from PyQt5.QtCore import Qt
 from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
 from src.tabs.change_category_name_dialog import Change_category_name_dialog
+from src.tabs.csv_dialog import Csv_dialog
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -25,6 +26,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         self.ok_button.clicked.connect(self.confirm_and_write_to_database)
         self.ok_button_csv.clicked.connect(self.csv_read)
         self.browse_file_button.clicked.connect(self.browse_file)
+        self.ok_button_csv.clicked.connect(self.show_dialog_csv)
 
     def set_database(self, database: Database):
         self.database = database
@@ -74,12 +76,6 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
             self.set_categories_list()
         
 
-
-
-
-
-
-
     def confirm_and_write_to_database(self):    # wpisywanie do bazy danych po zatwierdzeniu danych 
         if self.amount_line_edit.text():    # sprawdzenie czy pole z kwotą zostało wypełnione
             date_edit_str = self.date_edit.date().toString("yyyy-MM-dd")
@@ -99,3 +95,9 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         
         if file_name:
             self.browse_file_line_edit.setText(file_name)
+
+    def show_dialog_csv(self):
+        csv_dialog = Csv_dialog()
+        result = csv_dialog.exec_()
+        if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
+            print("kliknieto ok")
