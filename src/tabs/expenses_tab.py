@@ -26,7 +26,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         self.ok_button.clicked.connect(self.confirm_and_write_to_database)
         self.ok_button_csv.clicked.connect(self.csv_read)
         self.browse_file_button.clicked.connect(self.browse_file)
-        self.ok_button_csv.clicked.connect(self.show_dialog_csv)
+        self.ok_button_csv.clicked.connect(self.csv_read)
 
     def set_database(self, database: Database):
         self.database = database
@@ -83,10 +83,6 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
             self.database.add_expense(float(self.amount_line_edit.text().replace(',', '.')), date_edit_str, category_id)
             self.amount_line_edit.clear()
 
-
-    def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv -- przemyslec
-        pass
-
     def browse_file(self):  # przegladaj pliki po nacisnieciu przycisku
         options = QFileDialog.Options() 
         options |= QFileDialog.ReadOnly
@@ -96,8 +92,22 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         if file_name:
             self.browse_file_line_edit.setText(file_name)
 
-    def show_dialog_csv(self):
+
+    def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv -- przemyslec
+        # sprawdź czy jest wybrany plik csv, jeśli tak to pokaż okno:   ???
+        self.show_dialog_csv()
+        # najlepiej chyba, gdyby to była wszystko jedna metoda ?
+        
+
+
+    def show_dialog_csv(self):  # dodać sprawdzenie czy jest plik csv wybrany
         csv_dialog = Csv_dialog()
+        categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
+        category_names = [category.name for category in categories]
+        csv_dialog.category_combobox.addItems(category_names)
         result = csv_dialog.exec_()
         if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
             print("kliknieto ok")
+
+    def check_if_csv_file_is_chosen(self):
+        pass
