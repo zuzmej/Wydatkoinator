@@ -80,7 +80,8 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
     def confirm_and_write_to_database(self):    # wpisywanie do bazy danych po zatwierdzeniu danych 
         if self.amount_line_edit.text():    # sprawdzenie czy pole z kwotą zostało wypełnione
             date_edit_str = self.date_edit.date().toString("yyyy-MM-dd")
-            self.database.add_expense(float(self.amount_line_edit.text().replace(',', '.')), date_edit_str, self.categories_combobox.currentIndex()+1)
+            category_id = self.database.get_category_id_by_name(self.categories_combobox.currentText())
+            self.database.add_expense(float(self.amount_line_edit.text().replace(',', '.')), date_edit_str, category_id)
             self.amount_line_edit.clear()
 
 
