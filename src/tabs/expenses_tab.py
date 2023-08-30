@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QFileDialog
 from datetime import datetime, timedelta
 from src.ui.expenses_tab import Ui_expenses_tab
 from src.database.database import Database
@@ -92,4 +92,10 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         pass
 
     def browse_file(self):  # przegladaj pliki po nacisnieciu przycisku
-        pass
+        options = QFileDialog.Options() 
+        options |= QFileDialog.ReadOnly
+        
+        file_name, _ = QFileDialog.getOpenFileName(self, "Wybierz plik csv", "", "CSV Files (*.csv)", options=options)  # przechwytujemy pierwszą wartość, czyli ścieżkę pliku, a drugą wartość, czyli filtr ignorujemy
+        
+        if file_name:
+            self.browse_file_line_edit.setText(file_name)
