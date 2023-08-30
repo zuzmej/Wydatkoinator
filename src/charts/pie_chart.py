@@ -23,7 +23,7 @@ class Pie_chart(Chart):
         series.setLabelsVisible(True)
         series.setLabelsPosition(QPieSlice.LabelOutside)
         for slice in series.slices():
-            slice.setLabel("{:.0f}%".format(100 * slice.percentage()))
+            slice.setLabel("{:.0f}%".format(100 * slice.percentage()) + " / " + "{:.2f}zł".format(slice.value()))
         
         chart = QChart()
         
