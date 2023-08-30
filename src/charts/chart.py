@@ -7,7 +7,7 @@ import sys
 sys.path.insert(0, '../../')  # Dodaj katalog nadrzędny do ścieżki
 
 from src.ui.chart import Ui_Chart
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 class Chart_meta(QtWidgets.QWidget.__class__, ABC.__class__):
@@ -56,5 +56,25 @@ class Chart(QtWidgets.QWidget, metaclass=Chart_meta):
     #             category_month_sums[category_name][expense_month] += float(expense.amount)
     #     return category_month_sums
     
+
+    # UWAGA -- data starsza musi być podana jako pierwszy argument
+    def separate_months(self, start_date, end_date) -> dict:    #rozdzielenie przedziału czasowego na miesiące
+        result_dates = {}
+        while (start_date <= end_date):
+            month_end = start_date + timedelta(days=32)  # wykracza poza podany miesiąc
+            month_end = month_end - timedelta(days=month_end.day)   # wraca do końca poprzedniego miesiąca
+
+            if month_end > end_date:
+                month_end = end_date
+
+            result_dates[start_date] = month_end
+
+            start_date = month_end + timedelta(days=1)
+        return result_dates     # typ datetime.date
+
+
+
     def get_date_range(self, dates_list: list) -> tuple:
         return min(dates_list), max(dates_list)
+    
+    

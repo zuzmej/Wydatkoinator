@@ -40,22 +40,6 @@ class Stack_chart(Chart):
 
 
 
-    # UWAGA -- data starsza musi być podana jako pierwszy argument
-    def separate_months(self, start_date, end_date) -> dict:    #rozdzielenie przedziału czasowego na miesiące
-        result_dates = {}
-        while (start_date <= end_date):
-            month_end = start_date + timedelta(days=32)  # wykracza poza podany miesiąc
-            month_end = month_end - timedelta(days=month_end.day)   # wraca do końca poprzedniego miesiąca
-
-            if month_end > end_date:
-                month_end = end_date
-
-            result_dates[start_date] = month_end
-
-            start_date = month_end + timedelta(days=1)
-        return result_dates     # typ datetime.date
-
-
 
 
 

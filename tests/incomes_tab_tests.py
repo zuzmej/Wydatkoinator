@@ -2,19 +2,19 @@ import sys
 sys.path.insert(0, '../')
 
 
-from src.tabs.analysis_tab import Analysis_tab
-
+from src.tabs.incomes_tab import Incomes_tab
 from PyQt5 import QtWidgets
 from src.database.database import Database
-db = Database("/home/kubus/Pulpit/wyadtki/expenses.db")
+db = Database("expenses.db")
 
 expenses = db.get_all_expenses()
 
 app = QtWidgets.QApplication(sys.argv)
 
-w = Analysis_tab()
+w = Incomes_tab()
 w.set_database(db)
-w.set_categories_list()
+w.set_incomes_list()
+w.show_chart()
 
 w.show()
 
