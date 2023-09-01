@@ -2,7 +2,7 @@
 
 from .chart import Chart
 from PyQt5.QtChart import QChart, QStackedBarSeries, QBarSet,QBarCategoryAxis,QValueAxis
-from PyQt5.QtGui import QPainter
+from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtCore import Qt
 
 import sys
@@ -95,6 +95,12 @@ class Stack_chart(Chart):
         series.setLabelsVisible(True)
         # Tworzenie wykresu
         chart = QChart()
+        chart.setBackgroundBrush(QColor("#252525"))
+        chart.setTitleBrush(QColor("#C8BEB7"))
+        legend = chart.legend()
+        legend.setLabelColor(QColor("#C8BEB7"))  # Ustawia kolor czcionki legendy na pomarańczowy (#FF5733)
+
+
         chart.addSeries(series)
         axisX = QBarCategoryAxis()
         axisX.append(categories)
@@ -103,6 +109,10 @@ class Stack_chart(Chart):
         axisY = QValueAxis()  
         axisY.setTitleText("Kwota [zł]") 
         axisY.setLabelFormat("%i")  
+
+        axisX.setLabelsColor(QColor("#C8BEB7"))  # Ustaw kolor etykiet osi X na pomarańczowy
+        axisY.setLabelsColor(QColor("#C8BEB7")) 
+
         chart.addAxis(axisY, Qt.AlignLeft) 
         series.attachAxis(axisY) 
         chart.setTitle("Wydatki w poszczególnych kategoriach w wybranych przedziałach czasowych")

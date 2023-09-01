@@ -20,8 +20,6 @@ class Analysis_tab(QWidget, Ui_analisys_tab):
 
         self.date_from.setDate(datetime.today().date() - timedelta(days=7))
         self.date_to.setDate(datetime.today().date())
-        self.date_from.setCalendarPopup(True)
-        self.date_to.setCalendarPopup(True)
         self.date_from.dateChanged.connect(self.correctness_of_dates)
 
 
