@@ -8,6 +8,7 @@ from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
 from src.tabs.change_category_name_dialog import Change_category_name_dialog
 from src.tabs.csv_dialog import Csv_dialog
+import csv
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -24,9 +25,10 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         self.change_category_button.clicked.connect(self.change_category_name)
         self.delete_category_button.clicked.connect(self.delete_category)
         self.ok_button.clicked.connect(self.confirm_and_write_to_database)
-        self.ok_button_csv.clicked.connect(self.csv_read)
         self.browse_file_button.clicked.connect(self.browse_file)
         self.ok_button_csv.clicked.connect(self.csv_read)
+
+        self.selected_file_csv = None
 
     def set_database(self, database: Database):
         self.database = database
@@ -90,13 +92,32 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         file_name, _ = QFileDialog.getOpenFileName(self, "Wybierz plik csv", "", "CSV Files (*.csv)", options=options)  # przechwytujemy pierwszą wartość, czyli ścieżkę pliku, a drugą wartość, czyli filtr ignorujemy
         
         if file_name:
-            self.browse_file_line_edit.setText(file_name)
+            self.browse_file_line_edit.setText(file_name) # pokazanie ścieżki do pliku w wybranym miejscu
+            self.selected_file_csv = file_name
 
 
-    def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv -- przemyslec
-        # sprawdź czy jest wybrany plik csv, jeśli tak to pokaż okno:   ???
-        self.show_dialog_csv()
-        # najlepiej chyba, gdyby to była wszystko jedna metoda ?
+    def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv 
+        if self.selected_file_csv is not None:
+            #tutaj kod
+            with open(self.selected_file_csv, mode='r') as file:  # Otwieramy plik CSV w trybie do odczytu
+                csv_reader = csv.reader(file)
+                print("wczytany plik")
+
+                for row in csv_reader:      # Szukamy linii, która zawiera "data operacji" lub "data księgowania" w dowolnej kolumnie
+                    if "#Data operacji;" in row or "#Data księgowania" in row:
+                        print(f"row: {row}")
+                        break  # Przerywamy pętlę, gdy znajdziemy pasujący wiersz i zaczynamy od niego czytać
+                    else:
+                        print("nie ma")
+
+
+
+
+
+
+                    # self.show_dialog_csv()
+        else:
+            print("Nie wybrano pliku csv")
         
 
 
@@ -108,6 +129,3 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         result = csv_dialog.exec_()
         if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
             print("kliknieto ok")
-
-    def check_if_csv_file_is_chosen(self):
-        pass
