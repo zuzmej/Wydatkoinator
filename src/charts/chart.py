@@ -2,6 +2,8 @@
 
 from abc import ABC, abstractmethod
 from PyQt5 import QtWidgets
+from PyQt5.QtGui import QColor
+from PyQt5.QtChart import QChart
 
 import sys
 sys.path.insert(0, '../../')  # Dodaj katalog nadrzędny do ścieżki
@@ -19,6 +21,11 @@ class Chart(QtWidgets.QWidget, metaclass=Chart_meta):
     def __init__(self,chartview):
         super().__init__()
         self.chartview = chartview
+        chart = QChart()
+        chart.setBackgroundBrush(QColor("#252525"))
+        self.chartview.setChart(chart)
+        self.chartview.show()
+
     @abstractmethod
     def draw_chart(self, expenses: list):
         pass

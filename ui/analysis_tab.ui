@@ -6,12 +6,30 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1145</width>
+    <width>1130</width>
     <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget{
+background-color:#202020;
+color:#C8BEB7
+}
+QFrame{
+background-color:#252525;
+}
+QChartView{
+background-color:#252525;
+color:#252525;
+}
+QRadioButton{
+background-color:#252525;
+}
+
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="2">
@@ -28,6 +46,13 @@
        <height>100</height>
       </size>
      </property>
+     <property name="styleSheet">
+      <string notr="true">QCalendarWidget QWidget { alternate-background-color: #c8beb7; } /* naglowek z nazwami dni */
+
+QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionka*/QCalendarWidget QWidget { background-color: #c8beb7; }    /* calosc */ 
+
+</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::StyledPanel</enum>
      </property>
@@ -36,7 +61,14 @@
      </property>
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="4" column="1">
-       <widget class="QDateEdit" name="date_from"/>
+       <widget class="QDateEdit" name="date_from">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="0" column="0" colspan="4">
        <widget class="QLabel" name="title_select_date">
@@ -49,7 +81,18 @@
        </widget>
       </item>
       <item row="4" column="3">
-       <widget class="QDateEdit" name="date_to"/>
+       <widget class="QDateEdit" name="date_to">
+        <property name="styleSheet">
+         <string notr="true">QCalendarWidget QWidget { background-color: #c8beb7; }    /* calosc */ 
+
+QCalendarWidget QWidget { alternate-background-color: #c8beb7; } /* naglowek z nazwami dni */
+
+QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionka*/</string>
+        </property>
+        <property name="calendarPopup">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="from_label">

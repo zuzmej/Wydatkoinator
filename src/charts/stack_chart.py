@@ -2,7 +2,7 @@
 
 from .chart import Chart
 from PyQt5.QtChart import QChart, QStackedBarSeries, QBarSet,QBarCategoryAxis,QValueAxis
-from PyQt5.QtGui import QPainter
+from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtCore import Qt
 
 import sys
@@ -16,6 +16,7 @@ from datetime import datetime, timedelta
 class Stack_chart(Chart):
     def __init__(self, chartview):
         super().__init__(chartview)
+        
 
 
     def check_dates(self, date1, date2):  # metoda do sprawdzania czy daty wybrane przez użytkownika dotyczą tego samego miesiąca
@@ -37,7 +38,15 @@ class Stack_chart(Chart):
 
         return result_dates
 
-
+    def _on_bar_hovered(self, status, index):
+        """Obsługuje zdarzenie najechania myszą na segment wykresu."""
+        if status:
+            bar_set = self.sender()
+            category_name = bar_set.label()
+            value = bar_set.at(index)
+            self.chartview.setToolTip(f"Kategoria: {category_name}\nKwota: {value:.2f} zł")
+        else:
+            self.chartview.setToolTip("")
 
 
 
@@ -78,6 +87,7 @@ class Stack_chart(Chart):
             categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_months.items()]
 
         for category, bar_set in sets.items():
+            bar_set.hovered.connect(self._on_bar_hovered)
             series.append(bar_set)         
 
 
@@ -85,6 +95,12 @@ class Stack_chart(Chart):
         series.setLabelsVisible(True)
         # Tworzenie wykresu
         chart = QChart()
+        chart.setBackgroundBrush(QColor("#252525"))
+        chart.setTitleBrush(QColor("#C8BEB7"))
+        legend = chart.legend()
+        legend.setLabelColor(QColor("#C8BEB7"))  # Ustawia kolor czcionki legendy na pomarańczowy (#FF5733)
+
+
         chart.addSeries(series)
         axisX = QBarCategoryAxis()
         axisX.append(categories)
@@ -93,6 +109,10 @@ class Stack_chart(Chart):
         axisY = QValueAxis()  
         axisY.setTitleText("Kwota [zł]") 
         axisY.setLabelFormat("%i")  
+
+        axisX.setLabelsColor(QColor("#C8BEB7"))  # Ustaw kolor etykiet osi X na pomarańczowy
+        axisY.setLabelsColor(QColor("#C8BEB7")) 
+
         chart.addAxis(axisY, Qt.AlignLeft) 
         series.attachAxis(axisY) 
         chart.setTitle("Wydatki w poszczególnych kategoriach w wybranych przedziałach czasowych")
