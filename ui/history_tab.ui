@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>605</width>
-    <height>422</height>
+    <width>596</width>
+    <height>412</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -48,27 +48,6 @@ QListWidget { color: #c8beb7; }
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
-    <widget class="QPushButton" name="filter_button">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-     <property name="font">
-      <font>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>Filtruj</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="3">
-    <widget class="QTableWidget" name="table"/>
-   </item>
    <item row="3" column="1">
     <widget class="QPushButton" name="remove_filters_button">
      <property name="sizePolicy">
@@ -87,6 +66,24 @@ QListWidget { color: #c8beb7; }
      </property>
     </widget>
    </item>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="filter_button">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Filtruj</string>
+     </property>
+    </widget>
+   </item>
    <item row="0" column="0" colspan="3">
     <widget class="QLabel" name="history_tansaction_label">
      <property name="font">
@@ -95,11 +92,29 @@ QListWidget { color: #c8beb7; }
       </font>
      </property>
      <property name="text">
-      <string>Histora transakcji</string>
+      <string>Historia transakcji</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3">
+    <widget class="QTableWidget" name="table">
+     <property name="rowCount">
+      <number>0</number>
+     </property>
+     <property name="columnCount">
+      <number>5</number>
+     </property>
+     <attribute name="horizontalHeaderVisible">
+      <bool>true</bool>
+     </attribute>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
+     <column/>
     </widget>
    </item>
   </layout>
