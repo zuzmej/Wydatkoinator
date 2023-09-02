@@ -1,6 +1,6 @@
 from .chart import Chart
 from PyQt5.QtChart import QBarSet, QBarSeries, QChart, QBarCategoryAxis, QValueAxis
-from PyQt5.QtGui import QPainter
+from PyQt5.QtGui import QPainter, QColor
 from PyQt5.QtCore import Qt
 from datetime import datetime, timedelta
 
@@ -26,6 +26,10 @@ class Bar_chart(Chart):
             set_.append(sums_all["Wpływy"])
         series.append(set_)
         chart = QChart()
+        chart.setBackgroundBrush(QColor("#252525"))
+        chart.setTitleBrush(QColor("#C8BEB7"))
+        legend = chart.legend()
+        legend.setLabelColor(QColor("#C8BEB7"))
         chart.addSeries(series)
         chart.setTitle("Prosty wykres słupkowy")
         categories = [f"{f_date.strftime('%Y-%m-%d')} - {l_date.strftime('%Y-%m-%d')}" for f_date, l_date in months.items()]
@@ -35,7 +39,8 @@ class Bar_chart(Chart):
         # Utwórz osie wartości (osi Y)
         axisY = QValueAxis()
         # axisY.setRange(0, max(set_.sum()) + 10)  # Zakładając, że chcesz dodać trochę przestrzeni na górze
-
+        axisX.setLabelsColor(QColor("#C8BEB7"))  # Ustaw kolor etykiet osi X na pomarańczowy
+        axisY.setLabelsColor(QColor("#C8BEB7"))
         # Dodaj osie do wykresu
         chart.addAxis(axisX, Qt.AlignBottom)
         chart.addAxis(axisY, Qt.AlignLeft)
