@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>history_tab</class>
+ <widget class="QWidget" name="history_tab">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -45,7 +45,25 @@ color: #c8beb7;
 }
 
 QListWidget { color: #c8beb7; }
-</string>
+QHeaderView::section {
+    background-color: transparent;  /* brak tła */
+    color:#C8BEB7;  /* kolor napisu */
+	 border-top: 4px solid  #182B32;
+    border-bottom: 4px solid  #182B32;;
+	border-left: none;
+    border-right: none;
+ font-size: 20px;  /* Ustawienie rozmiaru czcionki */
+}
+
+QTableWidget::item {
+    font-size: 20px;
+     color:#C8BEB7
+}
+QTableWidget::item:selected {
+        background-color:  #252525; 
+color:#C8BEB7 ;
+        border: 2px solid #C8BEB7;     
+    }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="3" column="1">
@@ -101,6 +119,21 @@ QListWidget { color: #c8beb7; }
    </item>
    <item row="1" column="0" colspan="3">
     <widget class="QTableWidget" name="table">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="tabKeyNavigation">
+      <bool>false</bool>
+     </property>
+     <property name="showDropIndicator" stdset="0">
+      <bool>false</bool>
+     </property>
+     <property name="dragDropOverwriteMode">
+      <bool>false</bool>
+     </property>
+     <property name="showGrid">
+      <bool>false</bool>
+     </property>
      <property name="rowCount">
       <number>0</number>
      </property>
@@ -109,6 +142,9 @@ QListWidget { color: #c8beb7; }
      </property>
      <attribute name="horizontalHeaderVisible">
       <bool>true</bool>
+     </attribute>
+     <attribute name="verticalHeaderVisible">
+      <bool>false</bool>
      </attribute>
      <column/>
      <column/>
