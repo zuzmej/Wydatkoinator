@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Home_tab</class>
- <widget class="QWidget" name="Home_tab">
+ <class>home_tab</class>
+ <widget class="QWidget" name="home_tab">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>742</width>
-    <height>500</height>
+    <width>1145</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget { background-color: #202020 }</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
-    <widget class="QGraphicsView" name="graphicsView_2"/>
-   </item>
    <item row="0" column="0">
-    <widget class="QGraphicsView" name="graphicsView"/>
+    <widget class="QChartView" name="chart1" native="true"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QChartView" name="chart2" native="true"/>
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QChartView</class>
+   <extends>QWidget</extends>
+   <header>PyQt5.QtChart</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
