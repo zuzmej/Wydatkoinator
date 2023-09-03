@@ -28,10 +28,16 @@ QDialogButtonBox QPushButton {
 	color: #c8beb7
 }
 
-QComboBox { 
+QComboBox {
+	background-color: #3e3e3e;
 	color: #c8beb7;
-	background-color: #3e3e3e
 }
+
+QComboBox QAbstractItemView {	/* zmiana kolorów listy rozwijanej */
+	background-color: #3e3e3e;
+	color: #c8beb7;
+}
+
 
 QDateEdit {
 background-color: #3e3e3e;
