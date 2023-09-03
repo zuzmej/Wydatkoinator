@@ -13,8 +13,8 @@ class History_tab(QWidget, Ui_history_tab):
         self.table.horizontalHeader().setSectionResizeMode(0, QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(1, QHeaderView.Stretch)
         self.table.horizontalHeader().setSectionResizeMode(2, QHeaderView.Stretch)
-        self.table.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
-        self.table.horizontalHeader().setSectionResizeMode(4, QHeaderView.Stretch)
+        # self.table.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
+        # self.table.horizontalHeader().setSectionResizeMode(4, QHeaderView.Stretch)
         self.table.setHorizontalHeaderLabels(["data", "kwota", "kategoria"," "," "])
 
 
@@ -26,13 +26,16 @@ class History_tab(QWidget, Ui_history_tab):
         operations = self.database.get_expenses_by_date_range((datetime.today().date() - timedelta(weeks = 2)).strftime("%Y-%m-%d"), datetime.today().date().strftime("%Y-%m-%d"))
         operations.sort(key=lambda x: x.date)
         icon = QIcon("o_16.png")
+        icon_bin = QIcon("bin1_16.png")
         for operation in operations:
             self.table.insertRow(self.table.rowCount())
             item1 = QTableWidgetItem(operation.date.strftime("%Y-%m-%d"))
             item2 = QTableWidgetItem(str(operation.amount))
             item3 = QTableWidgetItem(operation.category.name)
             item4 = QTableWidgetItem()
+            item5 = QTableWidgetItem()
             item4.setIcon(icon)
+            item5.setIcon(icon_bin)
             item1.setTextAlignment(Qt.AlignCenter)
             item2.setTextAlignment(Qt.AlignCenter)
             # item3.setTextAlignment(Qt.AlignCenter)
@@ -40,5 +43,4 @@ class History_tab(QWidget, Ui_history_tab):
             self.table.setItem(self.table.rowCount() - 1, 1, item2)
             self.table.setItem(self.table.rowCount() - 1, 2, item3)
             self.table.setItem(self.table.rowCount() - 1, 3, item4)
-
-
+            self.table.setItem(self.table.rowCount() - 1, 4, item5)
