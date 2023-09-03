@@ -4,6 +4,7 @@ from src.database.database import Database
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from datetime import datetime, timedelta
+import os
 
 class History_tab(QWidget, Ui_history_tab):
     def __init__(self):
@@ -16,6 +17,7 @@ class History_tab(QWidget, Ui_history_tab):
         # self.table.horizontalHeader().setSectionResizeMode(3, QHeaderView.Stretch)
         # self.table.horizontalHeader().setSectionResizeMode(4, QHeaderView.Stretch)
         self.table.setHorizontalHeaderLabels(["data", "kwota", "kategoria"," "," "])
+        self.path = os.path.dirname(os.path.abspath(__file__))
 
 
     def set_database(self, database):
@@ -25,8 +27,8 @@ class History_tab(QWidget, Ui_history_tab):
         self.table.setRowCount(0)
         operations = self.database.get_expenses_by_date_range((datetime.today().date() - timedelta(weeks = 2)).strftime("%Y-%m-%d"), datetime.today().date().strftime("%Y-%m-%d"))
         operations.sort(key=lambda x: x.date)
-        icon = QIcon("o_16.png")
-        icon_bin = QIcon("bin1_16.png")
+        icon = QIcon(os.path.join(self.path, "../resources/pencil_16.png"))
+        icon_bin = QIcon(os.path.join(self.path, "../resources/bin(1)_16.png"))
         for operation in operations:
             self.table.insertRow(self.table.rowCount())
             item1 = QTableWidgetItem(operation.date.strftime("%Y-%m-%d"))
@@ -44,3 +46,6 @@ class History_tab(QWidget, Ui_history_tab):
             self.table.setItem(self.table.rowCount() - 1, 2, item3)
             self.table.setItem(self.table.rowCount() - 1, 3, item4)
             self.table.setItem(self.table.rowCount() - 1, 4, item5)
+
+    def set_history_list(self, filters):
+        pass
