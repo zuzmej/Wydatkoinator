@@ -49,7 +49,7 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
 
     # Meotdy do sprawdzania poprawności wprowadzanych zakresów dat i kwot
     def check_correctness_amount(self):
-        if float(self.amount_min.text()) < float(self.amount_max.text()):
+        if float(self.amount_min.text().replace(",", ".")) < float(self.amount_max.text().replace(",", ".")):
             return True
         else:
             return False
