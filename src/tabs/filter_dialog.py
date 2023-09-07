@@ -26,6 +26,17 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
 
         self.ok_button.clicked.connect(self.confirm)
 
+        self.amount_widget.setVisible(False)
+        self.category_widget.setVisible(False)
+        self.dates_widget.setVisible(False)
+
+        self.dates_checkbox.stateChanged.connect(self.is_dates_checkbox_checked)
+        self.categories_checkbox.stateChanged.connect(self.is_categories_checkbox_checked)
+        self.amount_checkbox.stateChanged.connect(self.is_amount_checkbox_checked)
+
+        self.filters = Filters()
+
+
     def set_database(self, database: Database):
         self.database = database
 
@@ -36,16 +47,53 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
 
         self.combo_box.add_item("Wszystkie")
 
+    # Meotdy do sprawdzania poprawności wprowadzanych zakresów dat i kwot
     def check_correctness_amount(self):
         if float(self.amount_min.text()) < float(self.amount_max.text()):
             return True
         else:
             return False
         
-    def confirm(self):
-        print("confirm")
-        # sprawdzenie dat
-        # sprawdzenie kwot
-        # wpisac do obiektu filters
+    def check_correctnes_dates(self):
+        if self.date_from.date() < self.date_to.date():
+            return True
+        else:
+            return False
+    
+    # Metody do sprawdzania stanów checkboxów
+    def is_dates_checkbox_checked(self):
+        if self.dates_checkbox.isChecked():
+             self.dates_widget.setVisible(True)
+        else:
+             self.dates_widget.setVisible(False)
 
-# UWAGA. czyszczenie pola z datami / domyslnie nieustawianie zadnej ? -- przypadek, kiedy uzytkownik otwiera okno, ale nie chce filtrowac po datach
+    def is_amount_checkbox_checked(self):
+        if self.amount_checkbox.isChecked():
+            self.amount_widget.setVisible(True)
+        else:
+            self.amount_widget.setVisible(False)
+
+    def is_categories_checkbox_checked(self):
+        if self.categories_checkbox.isChecked():
+            self.category_widget.setVisible(True)
+        else:
+            self.category_widget.setVisible(False)
+
+
+    def confirm(self):  # po kliknięciu przycisku ,,ok'' wpisywane sa odpowiednie wartosci do klasy Filters
+        if self.dates_checkbox.isChecked():
+            if self.check_correctnes_dates():
+                self.filters.start_date = self.date_from.date().toString("yyyy-MM-dd")
+                self.filters.end_date = self.date_to.date().toString("yyyy-MM-dd")
+            else:
+                print("Wprowadź poprawny zakres dat")
+                
+        if self.categories_checkbox.isChecked():
+            self.filters.chosen_categories = self.combo_box.get_checked_items()
+
+        if self.amount_checkbox.isChecked():
+            if self.check_correctness_amount():
+                self.filters.amount_min = self.amount_min.text()
+                self.filters.amount_max = self.amount_max.text()
+            else:
+                print("Wprowadź poprawny zakres kwot")
