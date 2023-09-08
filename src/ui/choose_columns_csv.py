@@ -24,6 +24,19 @@ class Ui_choose_columns_csv(object):
 "    background-color: #3e3e3e\n"
 "}\n"
 "\n"
+"QHeaderView::section:horizontal {\n"
+"    background-color: #3e3e3e; \n"
+"}\n"
+"\n"
+"\n"
+"QHeaderView::section:vertical {\n"
+"    background-color: #3e3e3e; \n"
+"}\n"
+"\n"
+"QScrollBar {\n"
+"    background-color: #3e3e3e\n"
+"}\n"
+"\n"
 "QLineEdit {\n"
 "    color: #c8beb7;\n"
 "    background-color: #3e3e3e\n"
@@ -32,7 +45,8 @@ class Ui_choose_columns_csv(object):
 "QDialogButtonBox QPushButton {\n"
 "    background-color: #3e3e3e;\n"
 "    color: #c8beb7\n"
-"}")
+"}\n"
+"")
         self.gridLayout = QtWidgets.QGridLayout(choose_columns_csv)
         self.gridLayout.setObjectName("gridLayout")
         self.label = QtWidgets.QLabel(choose_columns_csv)
@@ -43,7 +57,7 @@ class Ui_choose_columns_csv(object):
         self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.table_csv = QtWidgets.QTableWidget(choose_columns_csv)
         font = QtGui.QFont()
-        font.setPointSize(14)
+        font.setPointSize(12)
         self.table_csv.setFont(font)
         self.table_csv.setObjectName("table_csv")
         self.table_csv.setColumnCount(0)

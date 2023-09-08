@@ -104,13 +104,16 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
                 csv_reader = csv.reader(file,  delimiter=';')
                 print("wczytany plik")
                 csv_content = "\n".join(";".join(row) for row in csv_reader)
-                
-                file.seek(0)
-                data = list(csv_reader)
-                print(data)
+                                
 
                 modify_csv = Modify_csv(csv_content, self.selected_file_csv)
                 modify_csv.exec_()
+
+            with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
+                csv_reader = csv.reader(file,  delimiter=';')
+                print("wczytany plik")
+                data = list(csv_reader)
+                print(data)
 
                 choose_columns_csv = Choose_columns_csv(data, self.selected_file_csv)
                 choose_columns_csv.exec_()

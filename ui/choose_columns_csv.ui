@@ -23,6 +23,19 @@ QTableWidget {
 	background-color: #3e3e3e
 }
 
+QHeaderView::section:horizontal {
+    background-color: #3e3e3e; 
+}
+
+
+QHeaderView::section:vertical {
+    background-color: #3e3e3e; 
+}
+
+QScrollBar {
+	background-color: #3e3e3e
+}
+
 QLineEdit {
 	color: #c8beb7;
 	background-color: #3e3e3e
@@ -31,7 +44,8 @@ QLineEdit {
 QDialogButtonBox QPushButton {
 	background-color: #3e3e3e;
 	color: #c8beb7
-}</string>
+}
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -50,7 +64,7 @@ QDialogButtonBox QPushButton {
     <widget class="QTableWidget" name="table_csv">
      <property name="font">
       <font>
-       <pointsize>14</pointsize>
+       <pointsize>12</pointsize>
       </font>
      </property>
     </widget>
