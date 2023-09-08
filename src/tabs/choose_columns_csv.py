@@ -1,5 +1,7 @@
 from src.ui.choose_columns_csv import Ui_choose_columns_csv
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QTableWidgetItem
+from PyQt5.QtGui import QIntValidator
+
 
 class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
     num_of_col_with_date = None
@@ -17,6 +19,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         self.ok_button.clicked.connect(self.confirm)
 
 
+
         # wpisywanie zawartości pliku csv do tabeli 
  
         num_rows = len(self.data)
@@ -31,6 +34,13 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
                     self.table_csv.setItem(row, col, item)
         except Exception as e:
             print(f"Błąd podczas wczytywania pliku CSV: {str(e)}")
+
+
+        # poprawnosc wpisywanych danych
+        validator = QIntValidator(1, num_cols, self)
+        self.date_column.setValidator(validator)
+        self.amount_column.setValidator(validator)
+        self.description_column.setValidator(validator)
 
 
     def confirm(self):

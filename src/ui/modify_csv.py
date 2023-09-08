@@ -24,6 +24,10 @@ class Ui_modify_csv(object):
 "    background-color: #3e3e3e\n"
 "}\n"
 "\n"
+"QScrollBar {\n"
+"    background-color: #3e3e3e\n"
+"}\n"
+"\n"
 "QDialogButtonBox QPushButton {\n"
 "    background-color: #3e3e3e;\n"
 "    color: #c8beb7\n"
@@ -32,7 +36,7 @@ class Ui_modify_csv(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(modify_csv)
         font = QtGui.QFont()
-        font.setPointSize(12)
+        font.setPointSize(14)
         self.label.setFont(font)
         self.label.setWordWrap(True)
         self.label.setObjectName("label")

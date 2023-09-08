@@ -23,6 +23,10 @@ QPlainTextEdit {
 	background-color: #3e3e3e
 }
 
+QScrollBar {
+	background-color: #3e3e3e
+}
+
 QDialogButtonBox QPushButton {
 	background-color: #3e3e3e;
 	color: #c8beb7
@@ -33,7 +37,7 @@ QDialogButtonBox QPushButton {
     <widget class="QLabel" name="label">
      <property name="font">
       <font>
-       <pointsize>12</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="text">
