@@ -100,15 +100,22 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         if self.selected_file_csv is not None:
             #tutaj kod
             with open(self.selected_file_csv, mode='r') as file:  # Otwieramy plik CSV w trybie do odczytu
-                csv_reader = csv.reader(file)
+                csv_reader = csv.reader(file,  delimiter=';')
                 print("wczytany plik")
 
-                for row in csv_reader:      # Szukamy linii, która zawiera "data operacji" lub "data księgowania" w dowolnej kolumnie
-                    if "#Data operacji;" in row or "#Data księgowania" in row:
-                        print(f"row: {row}")
-                        break  # Przerywamy pętlę, gdy znajdziemy pasujący wiersz i zaczynamy od niego czytać
-                    else:
-                        print("nie ma")
+                row_count = 0
+
+                for row in csv_reader:
+                    print(f"Linia {row_count + 1}:")
+                    for element in row:
+                        print(f"Element: {element}")
+
+                    # Inkrementacja licznika
+                    row_count += 1
+
+                    # Przerwanie pętli po odczytaniu dwóch pierwszych wierszy
+                    if row_count == 2:
+                        break
 
 
 
