@@ -33,9 +33,17 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
             print(f"Błąd podczas wczytywania pliku CSV: {str(e)}")
 
 
-
     def confirm(self):
-        pass
+        if self.date_column.text().strip() and self.amount_column.text().strip() and self.description_column.text().strip():
+            self.get_columns_numbers()
+            print(self.date_column.text())
+            print(self.amount_column.text())
+            print(self.description_column.text())
+        else:
+            print("Nie wprowadzono numerów kolumn")
+
 
     def get_columns_numbers(self):
-        pass
+        self.num_of_col_with_date = self.date_column
+        self.num_of_col_with_amount = self.amount_column
+        self.num_of_cols_with_description = self.description_column
