@@ -10,6 +10,7 @@ from src.tabs.change_category_name_dialog import Change_category_name_dialog
 from src.tabs.csv_dialog import Csv_dialog
 from src.tabs.modify_csv import Modify_csv
 import csv
+from src.tabs.choose_columns_csv import Choose_columns_csv
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -106,6 +107,9 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
 
                 modify_csv = Modify_csv(csv_content, self.selected_file_csv)
                 modify_csv.exec_()
+
+                choose_columns_csv = Choose_columns_csv(csv_content, self.selected_file_csv)
+                choose_columns_csv.exec_()
             #tutaj kod
             
 
@@ -134,7 +138,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         
 
 
-    def show_dialog_csv(self):  # dodać sprawdzenie czy jest plik csv wybrany
+    def show_dialog_csv(self): 
         csv_dialog = Csv_dialog()
         categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
         category_names = [category.name for category in categories]
