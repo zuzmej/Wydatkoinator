@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QFileDialog
-from datetime import datetime, timedelta
+from datetime import datetime
 from src.ui.expenses_tab import Ui_expenses_tab
 from src.database.database import Database
 from PyQt5.QtGui import QDoubleValidator
@@ -117,29 +117,30 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
 
                 choose_columns_csv = Choose_columns_csv(data, self.selected_file_csv)
                 choose_columns_csv.exec_()
-            #tutaj kod
-            
 
-            #     row_count = 0
+                file.seek(0)
+                next(csv_reader)    # pomija pierwszy rząd z tytułami
+                
+                for row in csv_reader:
+                    column_with_date = row[int(choose_columns_csv.date_column.text())-1]
+                    column_with_amount = row[int(choose_columns_csv.amount_column.text())-1]
+                    column_with_description = row[int(choose_columns_csv.description_column.text())-1]
 
-            #     for row in csv_reader:
-            #         print(f"Linia {row_count + 1}:")
-            #         for element in row:
-            #             print(f"Element: {element}")
+                    csv_dialog = Csv_dialog()
 
-            #         # Inkrementacja licznika
-            #         row_count += 1
-
-            #         # Przerwanie pętli po odczytaniu dwóch pierwszych wierszy
-            #         if row_count == 2:
-            #             break
+                    csv_dialog.date_line_edit.setText(column_with_date)
+                    csv_dialog.amount_line_edit.setText(column_with_amount)
+                    csv_dialog.description_text_edit.setPlainText(column_with_description)
 
 
+                    result = csv_dialog.exec_()
+                    if result == 1:
+                        category_id = self.database.get_category_id_by_name(csv_dialog.category_combobox.currentText())
+                        print(category_id)
+                        self.database.add_expense(float(csv_dialog.amount_line_edit.text().replace("-","").replace(",", ".").replace(" ", "")), csv_dialog.date_line_edit.text(), category_id)
+                    else:   # jeśli nacisnie anuluj to sie przerwie petla
+                        break
 
-
-
-
-                    # self.show_dialog_csv()
         else:
             print("Nie wybrano pliku csv")
         
@@ -147,9 +148,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
 
     def show_dialog_csv(self): 
         csv_dialog = Csv_dialog()
-        categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
-        category_names = [category.name for category in categories]
-        csv_dialog.category_combobox.addItems(category_names)
+        
         result = csv_dialog.exec_()
         if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
             print("kliknieto ok")
