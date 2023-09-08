@@ -8,6 +8,7 @@ from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
 from src.tabs.change_category_name_dialog import Change_category_name_dialog
 from src.tabs.csv_dialog import Csv_dialog
+from src.tabs.modify_csv import Modify_csv
 import csv
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
@@ -98,24 +99,29 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
 
     def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv 
         if self.selected_file_csv is not None:
-            #tutaj kod
-            with open(self.selected_file_csv, mode='r') as file:  # Otwieramy plik CSV w trybie do odczytu
+            with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
                 csv_reader = csv.reader(file,  delimiter=';')
                 print("wczytany plik")
+                csv_content = "\n".join(",".join(row) for row in csv_reader)
 
-                row_count = 0
+                modify_csv = Modify_csv(csv_content, self.selected_file_csv)
+                modify_csv.exec_()
+            #tutaj kod
+            
 
-                for row in csv_reader:
-                    print(f"Linia {row_count + 1}:")
-                    for element in row:
-                        print(f"Element: {element}")
+            #     row_count = 0
 
-                    # Inkrementacja licznika
-                    row_count += 1
+            #     for row in csv_reader:
+            #         print(f"Linia {row_count + 1}:")
+            #         for element in row:
+            #             print(f"Element: {element}")
 
-                    # Przerwanie pętli po odczytaniu dwóch pierwszych wierszy
-                    if row_count == 2:
-                        break
+            #         # Inkrementacja licznika
+            #         row_count += 1
+
+            #         # Przerwanie pętli po odczytaniu dwóch pierwszych wierszy
+            #         if row_count == 2:
+            #             break
 
 
 

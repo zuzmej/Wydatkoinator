@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_modify_csv(object):
     def setupUi(self, modify_csv):
         modify_csv.setObjectName("modify_csv")
-        modify_csv.resize(500, 400)
+        modify_csv.resize(700, 700)
         modify_csv.setStyleSheet("QDialog { background-color: #202020 }\n"
 "\n"
 "QLabel { color: #c8beb7 }\n"
@@ -54,4 +54,4 @@ class Ui_modify_csv(object):
     def retranslateUi(self, modify_csv):
         _translate = QtCore.QCoreApplication.translate
         modify_csv.setWindowTitle(_translate("modify_csv", "Dialog"))
-        self.label.setText(_translate("modify_csv", "Usuń niepotrzebne nagłówki i wiersze w poniższym pliku csv (zostaw te, od których zaczynają się wartościowe dane, które będą wpisywane do bazy)"))
+        self.label.setText(_translate("modify_csv", "Usuń niepotrzebne wiersze na początku i na końcu pliku csv (zostaw te z wartościowymi danymi, które będą wpisane do bazy)"))
