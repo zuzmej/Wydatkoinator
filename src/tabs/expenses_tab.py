@@ -7,10 +7,12 @@ from PyQt5.QtCore import Qt
 from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
 from src.tabs.change_category_name_dialog import Change_category_name_dialog
-from src.tabs.csv_dialog import Csv_dialog
-from src.tabs.modify_csv import Modify_csv
+from src.csv.csv_reader_ import Csv_reader_
+
+from src.csv.csv_dialog import Csv_dialog
+from src.csv.modify_csv import Modify_csv
 import csv
-from src.tabs.choose_columns_csv import Choose_columns_csv
+from src.csv.choose_columns_csv import Choose_columns_csv
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -28,7 +30,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         self.delete_category_button.clicked.connect(self.delete_category)
         self.ok_button.clicked.connect(self.confirm_and_write_to_database)
         self.browse_file_button.clicked.connect(self.browse_file)
-        self.ok_button_csv.clicked.connect(self.csv_read)
+        self.ok_button_csv.clicked.connect(self.csv_logic)
 
         self.selected_file_csv = None
 
@@ -98,49 +100,13 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
             self.selected_file_csv = file_name
 
 
-    def csv_read(self): # wpisywanie do bazy danych po przesłaniu pliku csv 
+    def csv_logic(self): # wpisywanie do bazy danych po przesłaniu pliku csv 
         if self.selected_file_csv is not None:
-            with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
-                csv_reader = csv.reader(file,  delimiter=';')
-                print("wczytany plik")
-                csv_content = "\n".join(";".join(row) for row in csv_reader)
-                                
+            csv_reader_ = Csv_reader_(self.selected_file_csv, self.database)
+            csv_reader_.dialog_modify_csv()
 
-                modify_csv = Modify_csv(csv_content, self.selected_file_csv)
-                modify_csv.exec_()
-
-            with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
-                csv_reader = csv.reader(file,  delimiter=';')
-                print("wczytany plik")
-                data = list(csv_reader)
-                print(data)
-
-                choose_columns_csv = Choose_columns_csv(data, self.selected_file_csv)
-                choose_columns_csv.exec_()
-
-                file.seek(0)
-                next(csv_reader)    # pomija pierwszy rząd z tytułami
-                
-                for row in csv_reader:
-                    column_with_date = row[int(choose_columns_csv.date_column.text())-1]
-                    column_with_amount = row[int(choose_columns_csv.amount_column.text())-1]
-                    column_with_description = row[int(choose_columns_csv.description_column.text())-1]
-
-                    csv_dialog = Csv_dialog(self.database)
-
-                    csv_dialog.date_line_edit.setText(column_with_date)
-                    csv_dialog.amount_line_edit.setText(column_with_amount)
-                    csv_dialog.description_text_edit.setPlainText(column_with_description)
-
-
-                    result = csv_dialog.exec_()
-                    if result == 1:
-                        category_id = self.database.get_category_id_by_name(csv_dialog.category_combobox.currentText())
-                        print(category_id)
-                        self.database.add_expense(float(csv_dialog.amount_line_edit.text().replace("-","").replace(",", ".").replace(" ", "")), csv_dialog.date_line_edit.text(), category_id)
-                    else:   # jeśli nacisnie anuluj to sie przerwie petla
-                        break
-
+            csv_reader_.dialog_choose_columns()
+            csv_reader_.csv_read()
         else:
             print("Nie wybrano pliku csv")
         
