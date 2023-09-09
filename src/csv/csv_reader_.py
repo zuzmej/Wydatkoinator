@@ -2,6 +2,7 @@ from src.csv.csv_dialog import Csv_dialog
 from src.csv.modify_csv import Modify_csv
 import csv
 from src.csv.choose_columns_csv import Choose_columns_csv
+from PyQt5.QtCore import QDate
 
 class Csv_reader_():
     chosen_column_date = None
@@ -65,8 +66,18 @@ class Csv_reader_():
                     result = csv_dialog.exec_()
                     if result == 1:
                         category_id = self.database.get_category_id_by_name(csv_dialog.category_combobox.currentText())
-                        print(category_id)
-                        self.database.add_expense(float(csv_dialog.amount_line_edit.text().replace("-","").replace(",", ".").replace(" ", "")), csv_dialog.date_line_edit.text(), category_id)
+
+                        possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy-MM-dd"]
+                        for format in possible_formats:
+                            try:
+                                date = QDate.fromString(csv_dialog.date_line_edit.text(), format)
+                                formatted_date = date.toString("yyyy-MM-dd")
+                            except ValueError:
+                                print("Źle sformatowana data")
+
+
+
+                        self.database.add_expense(float(csv_dialog.amount_line_edit.text().replace("-","").replace(",", ".").replace(" ", "")), formatted_date, category_id)
                     else:   # jeśli nacisnie anuluj to sie przerwie petla
                         break
 
@@ -75,6 +86,8 @@ class Csv_reader_():
 
     def prepare_data(self):
         pass
+
+
     # metoda, która będzie: 
     # 1) ustawiać odpowiedni format daty
     # 2) odpowiednio ustawiać kwotę (replace -, , ,)

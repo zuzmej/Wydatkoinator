@@ -3,16 +3,11 @@ from datetime import datetime
 from src.ui.expenses_tab import Ui_expenses_tab
 from src.database.database import Database
 from PyQt5.QtGui import QDoubleValidator
-from PyQt5.QtCore import Qt
 from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
 from src.tabs.change_category_name_dialog import Change_category_name_dialog
 from src.csv.csv_reader_ import Csv_reader_
 
-from src.csv.csv_dialog import Csv_dialog
-from src.csv.modify_csv import Modify_csv
-import csv
-from src.csv.choose_columns_csv import Choose_columns_csv
 
 class Expenses_tab(QWidget, Ui_expenses_tab):
     def __init__(self):
@@ -109,12 +104,3 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
             csv_reader_.csv_read()
         else:
             print("Nie wybrano pliku csv")
-        
-
-
-    def show_dialog_csv(self): 
-        csv_dialog = Csv_dialog()
-        
-        result = csv_dialog.exec_()
-        if result == 1:     # jeśli użytkownik zatwierdził przyciskiem "ok"
-            print("kliknieto ok")
