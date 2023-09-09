@@ -4,7 +4,7 @@ sys.path.insert(0, '../')
 from src.tabs.history_tab import History_tab
 from PyQt5 import QtWidgets
 from src.database.database import Database
-db = Database("expenses.db")
+db = Database("/home/kubus/Pulpit/wyadtki/expenses.db")
 app = QtWidgets.QApplication(sys.argv)
 
 w = History_tab()

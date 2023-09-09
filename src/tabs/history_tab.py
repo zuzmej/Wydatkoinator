@@ -1,7 +1,8 @@
-from PyQt5.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
+from PyQt5.QtWidgets import QWidget, QHeaderView
 from src.ui.history_tab import Ui_history_tab
 from src.tabs.filters import Filters
 from src.database.database import Database
+from src.tabs.table_item import Table_item
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 from datetime import datetime, timedelta
@@ -29,16 +30,16 @@ class History_tab(QWidget, Ui_history_tab):
     def set_default_history_list(self):
         self.table.setRowCount(0)
         operations = self.database.get_expenses_by_date_range((datetime.today().date() - timedelta(weeks = 2)).strftime("%Y-%m-%d"), datetime.today().date().strftime("%Y-%m-%d"))
-        operations.sort(key=lambda x: x.date)
+        operations.sort(key = lambda operation: operation.date)
         icon = QIcon(os.path.join(self.path, "../resources/pencil_16.png"))
         icon_bin = QIcon(os.path.join(self.path, "../resources/bin(1)_16.png"))
         for operation in operations:
             self.table.insertRow(self.table.rowCount())
-            item1 = QTableWidgetItem(operation.date.strftime("%Y-%m-%d"))
-            item2 = QTableWidgetItem(str(operation.amount))
-            item3 = QTableWidgetItem(operation.category.name)
-            item4 = QTableWidgetItem()
-            item5 = QTableWidgetItem()
+            item1 = Table_item(operation.date.strftime("%Y-%m-%d"), operation.id)
+            item2 = Table_item(str(operation.amount), operation.id)
+            item3 = Table_item(operation.category.name, operation.id)
+            item4 = Table_item(None, None)
+            item5 = Table_item(None, None)
             item4.setIcon(icon)
             item5.setIcon(icon_bin)
             item1.setTextAlignment(Qt.AlignCenter)
@@ -54,15 +55,17 @@ class History_tab(QWidget, Ui_history_tab):
          self.table.setRowCount(0)
          operations = self.database.get_expenses_in_date_and_cost_range(filters.start_date, filters.end_date, filters.amount_min, filters.amount_max)
          operations = [operation for operation in operations if operation.category.name in filters.chosen_categories]
+         operations.sort(key = lambda operation: operation.date)
+
          icon = QIcon(os.path.join(self.path, "../resources/pencil_16.png"))
          icon_bin = QIcon(os.path.join(self.path, "../resources/bin(1)_16.png"))
          for operation in operations:
             self.table.insertRow(self.table.rowCount())
-            item1 = QTableWidgetItem(operation.date.strftime("%Y-%m-%d"))
-            item2 = QTableWidgetItem(str(operation.amount))
-            item3 = QTableWidgetItem(operation.category.name)
-            item4 = QTableWidgetItem()
-            item5 = QTableWidgetItem()
+            item1 = Table_item(operation.date.strftime("%Y-%m-%d"), operation.id)
+            item2 = Table_item(str(operation.amount), operation.id)
+            item3 = Table_item(operation.category.name, operation.id)
+            item4 = Table_item(None, None)
+            item5 = Table_item(None, None)
             item4.setIcon(icon)
             item5.setIcon(icon_bin)
             item1.setTextAlignment(Qt.AlignCenter)
@@ -73,3 +76,7 @@ class History_tab(QWidget, Ui_history_tab):
             self.table.setItem(self.table.rowCount() - 1, 2, item3)
             self.table.setItem(self.table.rowCount() - 1, 3, item4)
             self.table.setItem(self.table.rowCount() - 1, 4, item5)
+
+
+    def on_cell_clicked(self, row, column):
+        pass
