@@ -126,7 +126,7 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
                     column_with_amount = row[int(choose_columns_csv.amount_column.text())-1]
                     column_with_description = row[int(choose_columns_csv.description_column.text())-1]
 
-                    csv_dialog = Csv_dialog()
+                    csv_dialog = Csv_dialog(self.database)
 
                     csv_dialog.date_line_edit.setText(column_with_date)
                     csv_dialog.amount_line_edit.setText(column_with_amount)
