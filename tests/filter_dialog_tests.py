@@ -6,7 +6,7 @@ from src.tabs.filter_dialog import Filter_dialog
 
 from PyQt5 import QtWidgets
 from src.database.database import Database
-db = Database("../../Pobrane/expenses.db")
+db = Database("expenses.db")
 
 expenses = db.get_all_expenses()
 

@@ -1,7 +1,7 @@
-from PyQt5.QtWidgets import QWidget, QDialogButtonBox
+from PyQt5.QtWidgets import QDialog, QDialogButtonBox
 from src.ui.history_edit import Ui_history_edit
 from PyQt5.QtGui import QDoubleValidator
-class History_edit(QWidget, Ui_history_edit):
+class History_edit(QDialog, Ui_history_edit):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -9,7 +9,7 @@ class History_edit(QWidget, Ui_history_edit):
         self.Database = None
         self.validator = QDoubleValidator(0.00, 1000000.00, 2)
         self.line_edit.setValidator(self.validator)
-        ok_button = self.button_box.button(QDialogButtonBox.Ok)
+        ok_button = self.buttonBox.button(QDialogButtonBox.Ok)
         ok_button.clicked.connect(self.confirm_changes)
 
     def set_database(self, database):

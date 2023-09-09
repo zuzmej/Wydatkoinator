@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>history_edit</class>
- <widget class="QDialog" name="history_edit">
+ <class>delete_history</class>
+ <widget class="QDialog" name="delete_history">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>383</width>
+    <height>132</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -45,19 +45,10 @@ color: #c8beb7;
 }
 
 QListWidget { color: #c8beb7; }
-
-QCalendarWidget QWidget { background-color: #c8beb7; }	/* calosc */ 
-
-QCalendarWidget QWidget { alternate-background-color: #c8beb7; } /* naglowek z nazwami dni */
-
-QCalendarWidget QToolButton { color: black; }	/* najwyzszy naglowek - czcionka*/
-
-
-
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="7" column="0" colspan="2">
+   <item row="1" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -67,39 +58,15 @@ QCalendarWidget QToolButton { color: black; }	/* najwyzszy naglowek - czcionka*/
      </property>
     </widget>
    </item>
-   <item row="4" column="0">
-    <widget class="QDateEdit" name="date_edit">
-     <property name="calendarPopup">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QLineEdit" name="line_edit"/>
-   </item>
-   <item row="3" column="0">
-    <widget class="QLabel" name="label_2">
-     <property name="text">
-      <string>Edytuj datę:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
+   <item row="0" column="0">
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Edytuj kwotę:</string>
+      <string>Czy na pewno chcesz usunać transakcję?</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
-   </item>
-   <item row="5" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string>Edytuj kategorię:</string>
-     </property>
-    </widget>
-   </item>
-   <item row="6" column="0">
-    <widget class="QComboBox" name="combo_box"/>
    </item>
   </layout>
  </widget>
@@ -108,7 +75,7 @@ QCalendarWidget QToolButton { color: black; }	/* najwyzszy naglowek - czcionka*/
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>history_edit</receiver>
+   <receiver>delete_history</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -124,7 +91,7 @@ QCalendarWidget QToolButton { color: black; }	/* najwyzszy naglowek - czcionka*/
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>history_edit</receiver>
+   <receiver>delete_history</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

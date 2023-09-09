@@ -7,7 +7,7 @@ from PyQt5.QtGui import QDoubleValidator
 from .combobox import Combo_box
 
 class Filter_dialog(QDialog, Ui_filter_dialog):
-    def __init__(self):
+    def __init__(self,filters: Filters):
         super().__init__()
         self.setupUi(self)
         self.database = None
@@ -34,7 +34,7 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
         self.categories_checkbox.stateChanged.connect(self.is_categories_checkbox_checked)
         self.amount_checkbox.stateChanged.connect(self.is_amount_checkbox_checked)
 
-        self.filters = Filters()
+        self.filters = filters
 
 
     def set_database(self, database: Database):
