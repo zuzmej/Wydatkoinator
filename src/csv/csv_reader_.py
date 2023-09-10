@@ -9,6 +9,10 @@ class Csv_reader_():
     chosen_column_amount = None
     chosen_column_description = []
 
+    column_with_date = None
+    column_with_amount = None
+    column_with_description = None
+
     def __init__(self, selected_file_csv, database):
         self.selected_file_csv = selected_file_csv
         self.database = database
@@ -16,7 +20,6 @@ class Csv_reader_():
     def dialog_modify_csv(self):
         with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
                 csv_reader = csv.reader(file,  delimiter=';')
-                print("wczytany plik")
                 csv_content = "\n".join(";".join(row) for row in csv_reader)
                                 
 
@@ -28,9 +31,7 @@ class Csv_reader_():
     def dialog_choose_columns(self):
         with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
                 csv_reader = csv.reader(file,  delimiter=';')
-                print("wczytany plik")
                 data = list(csv_reader)
-                print(data)
 
                 choose_columns_csv = Choose_columns_csv(data, self.selected_file_csv)
                 result = choose_columns_csv.exec_()
@@ -48,62 +49,73 @@ class Csv_reader_():
     def csv_read(self):
         with open(self.selected_file_csv, mode='r+') as file:
             csv_reader = csv.reader(file,  delimiter=';')
-            print("wczytany plik")
             self.check_first_row(csv_reader)
 
             for row in csv_reader:
-                column_with_date = row[int(self.chosen_column_date)-1]
-                column_with_amount = row[int(self.chosen_column_amount)-1]
-                column_with_description = row[int(self.chosen_column_description)-1]
+                self.column_with_date = row[int(self.chosen_column_date)-1]
+                self.column_with_amount = row[int(self.chosen_column_amount)-1]
+                self.column_with_description = row[int(self.chosen_column_description)-1]
 
-
-                possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy-MM-dd"]
-                for format in possible_formats:
-                    try:
-                        date = QDate.fromString(column_with_date, format)
-                        print(date)
-                        formatted_date = date.toString("yyyy-MM-dd")
-                        if formatted_date:
-                            break
-                    except ValueError:
-                        print("Źle sformatowana data")
+                formatted_date = self.format_date()
 
                 csv_dialog = Csv_dialog(self.database)
-                csv_dialog.date_line_edit.setText(column_with_date)
-                csv_dialog.amount_line_edit.setText(column_with_amount)
-                csv_dialog.description_text_edit.setPlainText(column_with_description)
+                csv_dialog.date_line_edit.setText(self.column_with_date)
+                csv_dialog.amount_line_edit.setText(self.column_with_amount)
+                csv_dialog.description_text_edit.setPlainText(self.column_with_description)
 
-                if column_with_amount.startswith('-'):  # jezeli odczytany jest wydatek
+                if self.column_with_amount.startswith('-'):  # jezeli odczytany jest wydatek
                     result = csv_dialog.exec_()
                     if result == 1:
                         category_id = self.database.get_category_id_by_name(csv_dialog.category_combobox.currentText())
-                        self.database.add_expense(float(csv_dialog.amount_line_edit.text().replace("-","").replace(",", ".").replace(" ", "")), formatted_date, category_id)
+                        self.database.add_expense(float(self.column_with_amount.replace("-","").replace(",", ".").replace(" ", "")), formatted_date, category_id) 
                     else:   # jeśli nacisnie anuluj to sie przerwie petla
                         break
 
                 else:   # odczytany jest wpływ, czyli kwota na plusie
                     print("To jest wpływ - wpisuję do bazy")
-                    category_id = None
-                    possible_category_names = ["Wpływy", "Wplywy", "Wplyw", "wpływy", "wplywy", "wplyw"]
-                    for category_name in possible_category_names:
-                        try:
-                            category_id = self.database.get_category_id_by_name(category_name)
-                            print(category_id)
-                            if category_id:
-                                print(category_id)
-                                break
-                        except ValueError:
-                            print("nie ma takiej kategorii")
 
+                    category_id = self.get_category_id_for_incomes()
                     if category_id is None:
-                        self.database.add_category("Wpływy")
-                        category_id = self.database.get_category_id_by_name("Wpływy")
-
-                    self.database.add_expense(float(column_with_amount.replace(",", ".").replace(" ", "")), formatted_date, category_id)
+                        category_id = self.add_category_for_incomes_to_database()
+                    
+                    self.database.add_expense(float(self.column_with_amount.replace(",", ".").replace(" ", "")), formatted_date, category_id)
 
 
              
     # właściwa metoda czytania pliku
+
+    def get_category_id_for_incomes(self):  # zwraca category_id lub None
+        possible_category_names = ["Wpływy", "Wplywy", "Wplyw", "wpływy", "wplywy", "wplyw"]
+        category_id = None
+        for category_name in possible_category_names:
+            try:
+                category_id = self.database.get_category_id_by_name(category_name)
+                if category_id:
+                    break
+            except ValueError:
+                pass
+        return category_id
+
+
+    def add_category_for_incomes_to_database(self):
+        self.database.add_category("Wpływy")
+        return self.database.get_category_id_by_name("Wpływy")
+        
+
+
+    def format_date(self):
+        possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy-MM-dd"]
+        for format in possible_formats:
+            try:
+                date = QDate.fromString(self.column_with_date, format)
+                formatted_date = date.toString("yyyy-MM-dd")
+                if formatted_date:
+                    break
+            except ValueError:
+                print("Źle sformatowana data")
+
+        return formatted_date
+
 
     def prepare_data(self):
         pass
