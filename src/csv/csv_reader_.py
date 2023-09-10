@@ -52,34 +52,55 @@ class Csv_reader_():
             self.check_first_row(csv_reader)
 
             for row in csv_reader:
-                    column_with_date = row[int(self.chosen_column_date)-1]
-                    column_with_amount = row[int(self.chosen_column_amount)-1]
-                    column_with_description = row[int(self.chosen_column_description)-1]
-
-                    csv_dialog = Csv_dialog(self.database)
-
-                    csv_dialog.date_line_edit.setText(column_with_date)
-                    csv_dialog.amount_line_edit.setText(column_with_amount)
-                    csv_dialog.description_text_edit.setPlainText(column_with_description)
+                column_with_date = row[int(self.chosen_column_date)-1]
+                column_with_amount = row[int(self.chosen_column_amount)-1]
+                column_with_description = row[int(self.chosen_column_description)-1]
 
 
+                possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy-MM-dd"]
+                for format in possible_formats:
+                    try:
+                        date = QDate.fromString(column_with_date, format)
+                        print(date)
+                        formatted_date = date.toString("yyyy-MM-dd")
+                        if formatted_date:
+                            break
+                    except ValueError:
+                        print("Źle sformatowana data")
+
+                csv_dialog = Csv_dialog(self.database)
+                csv_dialog.date_line_edit.setText(column_with_date)
+                csv_dialog.amount_line_edit.setText(column_with_amount)
+                csv_dialog.description_text_edit.setPlainText(column_with_description)
+
+                if column_with_amount.startswith('-'):  # jezeli odczytany jest wydatek
                     result = csv_dialog.exec_()
                     if result == 1:
                         category_id = self.database.get_category_id_by_name(csv_dialog.category_combobox.currentText())
-
-                        possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy-MM-dd"]
-                        for format in possible_formats:
-                            try:
-                                date = QDate.fromString(csv_dialog.date_line_edit.text(), format)
-                                formatted_date = date.toString("yyyy-MM-dd")
-                            except ValueError:
-                                print("Źle sformatowana data")
-
-
-
                         self.database.add_expense(float(csv_dialog.amount_line_edit.text().replace("-","").replace(",", ".").replace(" ", "")), formatted_date, category_id)
                     else:   # jeśli nacisnie anuluj to sie przerwie petla
                         break
+
+                else:   # odczytany jest wpływ, czyli kwota na plusie
+                    print("To jest wpływ - wpisuję do bazy")
+                    category_id = None
+                    possible_category_names = ["Wpływy", "Wplywy", "Wplyw", "wpływy", "wplywy", "wplyw"]
+                    for category_name in possible_category_names:
+                        try:
+                            category_id = self.database.get_category_id_by_name(category_name)
+                            print(category_id)
+                            if category_id:
+                                print(category_id)
+                                break
+                        except ValueError:
+                            print("nie ma takiej kategorii")
+
+                    if category_id is None:
+                        self.database.add_category("Wpływy")
+                        category_id = self.database.get_category_id_by_name("Wpływy")
+
+                    self.database.add_expense(float(column_with_amount.replace(",", ".").replace(" ", "")), formatted_date, category_id)
+
 
              
     # właściwa metoda czytania pliku
