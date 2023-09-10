@@ -11,7 +11,7 @@ class Csv_reader_():
 
     column_with_date = None
     column_with_amount = None
-    column_with_description = None
+    column_with_description = []
 
     def __init__(self, selected_file_csv, database):
         self.selected_file_csv = selected_file_csv
@@ -39,6 +39,11 @@ class Csv_reader_():
                     self.chosen_column_date = choose_columns_csv.num_of_col_with_date.text()
                     self.chosen_column_amount = choose_columns_csv.num_of_col_with_amount.text()
                     self.chosen_column_description = choose_columns_csv.num_of_cols_with_description.text()
+                    self.chosen_column_description = self.chosen_column_description.split(',')  #zamiana na listę
+                    self.chosen_column_description = [int(element) for element in self.chosen_column_description]   # zamiana na int
+
+
+                    print(self.chosen_column_description)
                     
     # tutaj będzie kod obsługujący okienko z wybieraniem kolumn
 
@@ -52,16 +57,25 @@ class Csv_reader_():
             self.check_first_row(csv_reader)
 
             for row in csv_reader:
+                self.column_with_description.clear()
                 self.column_with_date = row[int(self.chosen_column_date)-1]
                 self.column_with_amount = row[int(self.chosen_column_amount)-1]
-                self.column_with_description = row[int(self.chosen_column_description)-1]
+
+
+                for num in range(len(self.chosen_column_description)):
+                    self.column_with_description.append(row[self.chosen_column_description[num]-1])
+                    print(self.column_with_description)
 
                 formatted_date = self.format_date()
 
                 csv_dialog = Csv_dialog(self.database)
                 csv_dialog.date_line_edit.setText(self.column_with_date)
                 csv_dialog.amount_line_edit.setText(self.column_with_amount)
-                csv_dialog.description_text_edit.setPlainText(self.column_with_description)
+
+                for num in range(len(self.chosen_column_description)):  # tutaj świruje
+                    print(num)
+                    print(self.column_with_description)
+                    csv_dialog.description_text_edit.appendPlainText(self.column_with_description[num])
 
                 if self.column_with_amount.startswith('-'):  # jezeli odczytany jest wydatek
                     result = csv_dialog.exec_()
@@ -82,7 +96,9 @@ class Csv_reader_():
 
 
              
-    # właściwa metoda czytania pliku
+    def count_numbers_in_list(self, input_str):
+        numbers = [num.strip() for num in numbers if num.strip()]
+        return len(numbers)
 
     def get_category_id_for_incomes(self):  # zwraca category_id lub None
         possible_category_names = ["Wpływy", "Wplywy", "Wplyw", "wpływy", "wplywy", "wplyw"]
