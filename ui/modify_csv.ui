@@ -41,7 +41,7 @@ QDialogButtonBox QPushButton {
       </font>
      </property>
      <property name="text">
-      <string>Usuń niepotrzebne wiersze na początku i na końcu pliku csv (zostaw te z wartościowymi danymi, które będą wpisane do bazy)</string>
+      <string>Usuń niepotrzebne wiersze na początku i na końcu pliku csv (zostaw wiersz z nagłówkami i z wartościowymi danymi, które będą wpisane do bazy)</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

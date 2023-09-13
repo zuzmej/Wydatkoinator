@@ -58,4 +58,4 @@ class Ui_modify_csv(object):
     def retranslateUi(self, modify_csv):
         _translate = QtCore.QCoreApplication.translate
         modify_csv.setWindowTitle(_translate("modify_csv", "Dialog"))
-        self.label.setText(_translate("modify_csv", "Usuń niepotrzebne wiersze na początku i na końcu pliku csv (zostaw te z wartościowymi danymi, które będą wpisane do bazy)"))
+        self.label.setText(_translate("modify_csv", "Usuń niepotrzebne wiersze na początku i na końcu pliku csv (zostaw wiersz z nagłówkami i z wartościowymi danymi, które będą wpisane do bazy)"))
