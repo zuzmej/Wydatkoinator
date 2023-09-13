@@ -3,12 +3,13 @@ from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QTableWidgetItem, QMessag
 from PyQt5.QtGui import QIntValidator, QRegExpValidator
 from PyQt5.QtCore import QRegExp
 
+# okno dialogowe, w którym użytkownik wybiera numery kolumn z datą, kwotą i opisem z pliku csv
 class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
     num_of_col_with_date = None
     num_of_col_with_amount = None
     num_of_cols_with_description = []
 
-    def __init__(self, data, csv_file):  #przekazanie zawartości pliku csv oraz ścieżki do pliku
+    def __init__(self, data, csv_file):  # przekazanie zawartości pliku csv oraz ścieżki do pliku
         super().__init__()
         self.setupUi(self)
         self.data = data
@@ -19,9 +20,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         self.ok_button.clicked.connect(self.confirm)
 
 
-
-        # wpisywanie zawartości pliku csv do tabeli 
- 
+        # wpisywanie zawartości pliku csv do tabeli
         self.num_rows = len(self.data)
         self.num_cols = len(self.data[0])   
         self.table_csv.setRowCount(self.num_rows)
@@ -36,7 +35,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
             print(f"Błąd podczas wczytywania pliku CSV: {str(e)}")
 
 
-        # poprawnosc wpisywanych danych
+        # sprawdzenie poprawnosci wpisywanych danych
         validator = QIntValidator(1, self.num_cols, self)
         self.date_column.setValidator(validator)
         self.amount_column.setValidator(validator)
@@ -51,6 +50,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         self.message_box.resize(100,100)
 
 
+    # zatwierdzenie wprowadzonych danych
     def confirm(self):
         if self.are_num_columns_entered():
             if self.correctness_of_description_columns:
@@ -60,6 +60,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
             self.message_box.exec_()
 
 
+    # sprawdzenie czy dane zostały wprowadzone przez użytkownika
     def are_num_columns_entered(self):
         if not self.date_column.text().strip():
             return False
@@ -71,6 +72,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         return True
 
 
+    # sprawdzenie poprawności danych z opisem
     def correctness_of_description_columns(self):
         values = self.description_column.text().split(',')
         for value in values:
@@ -82,6 +84,7 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         return True
     
 
+    # przypisanie wpisanych wartości 
     def set_columns_numbers(self):
         self.num_of_col_with_date = self.date_column
         self.num_of_col_with_amount = self.amount_column
