@@ -1,14 +1,12 @@
 from src.ui.choose_columns_csv import Ui_choose_columns_csv
-from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QTableWidgetItem
+from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QTableWidgetItem, QMessageBox
 from PyQt5.QtGui import QIntValidator, QRegExpValidator
-from PyQt5.QtCore import QRegExp, pyqtSignal
+from PyQt5.QtCore import QRegExp
 
 class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
     num_of_col_with_date = None
     num_of_col_with_amount = None
     num_of_cols_with_description = []
-
-    confirmed = pyqtSignal()    # obiekt sygnału
 
     def __init__(self, data, csv_file):  #przekazanie zawartości pliku csv oraz ścieżki do pliku
         super().__init__()
@@ -46,15 +44,20 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         validator_description = QRegExpValidator(QRegExp("^[0-9,]+$"))
         self.description_column.setValidator(validator_description)
 
+        self.message_box = QMessageBox()
+        self.message_box.setWindowTitle("Informacja")
+        self.message_box.setStyleSheet("color: #c8beb7; background-color: #3e3e3e")
+        self.message_box.setIcon(QMessageBox.Information)
+        self.message_box.resize(100,100)
+
+
     def confirm(self):
         if self.are_num_columns_entered():
             if self.correctness_of_description_columns:
-                self.get_columns_numbers()
-                # self.confirmed.emit()
-            else:
-                print("Wprowadzono zły format przy wyborze kolumn z opisem")
+                self.set_columns_numbers()
         else:
-            print("Nie wprowadzono danych")
+            self.message_box.setText("Nie wprowadzono danych")
+            self.message_box.exec_()
 
 
     def are_num_columns_entered(self):
@@ -72,15 +75,14 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         values = self.description_column.text().split(',')
         for value in values:
             num = int(value)
-            print(value)
-            print(num)
             if num < 1 or num > self.num_cols:
-                print(f"Liczby muszą być w zakresie od 1 do {self.num_cols}.")
+                self.message_box.setText(f"Liczby muszą być w zakresie od 1 do {self.num_cols}.")
+                self.message_box.exec_()
                 return False
         return True
     
 
-    def get_columns_numbers(self):
+    def set_columns_numbers(self):
         self.num_of_col_with_date = self.date_column
         self.num_of_col_with_amount = self.amount_column
         self.num_of_cols_with_description = self.description_column

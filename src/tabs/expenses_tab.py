@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QFileDialog
+from PyQt5.QtWidgets import QWidget, QFileDialog, QMessageBox
 from datetime import datetime
 from src.ui.expenses_tab import Ui_expenses_tab
 from src.database.database import Database
@@ -65,7 +65,6 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
             self.set_categories_list()
 
     def change_category_name(self):
-        print("klikniety")
         change_category_name_dialog = Change_category_name_dialog()
         categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
         category_names = [category.name for category in categories]
@@ -102,4 +101,10 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
                 if csv_reader_.dialog_choose_columns():
                     csv_reader_.csv_read()
         else:
-            print("Nie wybrano pliku csv")
+            message_box = QMessageBox()
+            message_box.setWindowTitle("Informacja")
+            message_box.setText("Nie wybrano pliku csv")
+            message_box.setStyleSheet("color: #c8beb7; background-color: #3e3e3e")
+            message_box.setIcon(QMessageBox.Information)
+            message_box.resize(100,100)
+            message_box.exec_()
