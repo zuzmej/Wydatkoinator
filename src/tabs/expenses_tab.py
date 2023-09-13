@@ -98,9 +98,8 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
     def csv_logic(self): # wpisywanie do bazy danych po przesłaniu pliku csv 
         if self.selected_file_csv is not None:
             csv_reader_ = Csv_reader_(self.selected_file_csv, self.database)
-            csv_reader_.dialog_modify_csv()
-
-            csv_reader_.dialog_choose_columns()
-            csv_reader_.csv_read()
+            if csv_reader_.dialog_modify_csv():
+                if csv_reader_.dialog_choose_columns():
+                    csv_reader_.csv_read()
         else:
             print("Nie wybrano pliku csv")

@@ -24,26 +24,32 @@ class Csv_reader_():
                                 
 
                 modify_csv = Modify_csv(csv_content, self.selected_file_csv)
-                modify_csv.exec_()
-    # tutaj będzie kod obsługujący modyfikację pliku
-    # rozwazyc czy nie zapisywac w nowym pliku
+                result = modify_csv.exec_()
+                if result == 1:
+                    return True
+
 
     def dialog_choose_columns(self):
         with open(self.selected_file_csv, mode='r+') as file:  # Otwieramy plik CSV w trybie do odczytu
-                csv_reader = csv.reader(file,  delimiter=';')
-                data = list(csv_reader)
+            csv_reader = csv.reader(file,  delimiter=';')
+            data = list(csv_reader)
 
-                choose_columns_csv = Choose_columns_csv(data, self.selected_file_csv)
-                result = choose_columns_csv.exec_()
-                if choose_columns_csv.num_of_col_with_date is not None and choose_columns_csv.num_of_col_with_amount is not None and choose_columns_csv.num_of_cols_with_description:   #jesli sa niepuste
-                    self.chosen_column_date = choose_columns_csv.num_of_col_with_date.text()
-                    self.chosen_column_amount = choose_columns_csv.num_of_col_with_amount.text()
-                    self.chosen_column_description = choose_columns_csv.num_of_cols_with_description.text()
-                    self.chosen_column_description = self.chosen_column_description.split(',')  #zamiana na listę
-                    self.chosen_column_description = [int(element) for element in self.chosen_column_description]   # zamiana na int
+            choose_columns_csv = Choose_columns_csv(data, self.selected_file_csv)
+            result = choose_columns_csv.exec_()
+            if result == 1:
+                if choose_columns_csv.num_of_col_with_date is not None and choose_columns_csv.num_of_col_with_amount is not None and choose_columns_csv.num_of_cols_with_description:   #jesli sa niepuste - !!! + jeśli są akceptowane
+                    if choose_columns_csv.correctness_of_description_columns():
+                        self.chosen_column_date = choose_columns_csv.num_of_col_with_date.text()
+                        self.chosen_column_amount = choose_columns_csv.num_of_col_with_amount.text()
+                        self.chosen_column_description = choose_columns_csv.num_of_cols_with_description.text()
+                        self.chosen_column_description = self.chosen_column_description.split(',')  #zamiana na listę
+                        self.chosen_column_description = [int(element) for element in self.chosen_column_description]   # zamiana na int
 
 
-                    print(self.chosen_column_description)
+                        print(self.chosen_column_description)
+                        return True
+            # else:
+            #     return False
                     
     # tutaj będzie kod obsługujący okienko z wybieraniem kolumn
 
@@ -72,7 +78,7 @@ class Csv_reader_():
                 csv_dialog.date_line_edit.setText(self.column_with_date)
                 csv_dialog.amount_line_edit.setText(self.column_with_amount)
 
-                for num in range(len(self.chosen_column_description)):  # tutaj świruje
+                for num in range(len(self.chosen_column_description)):
                     print(num)
                     print(self.column_with_description)
                     csv_dialog.description_text_edit.appendPlainText(self.column_with_description[num])

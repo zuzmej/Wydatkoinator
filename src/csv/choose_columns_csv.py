@@ -1,12 +1,14 @@
 from src.ui.choose_columns_csv import Ui_choose_columns_csv
 from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QTableWidgetItem
 from PyQt5.QtGui import QIntValidator, QRegExpValidator
-from PyQt5.QtCore import QRegExp
+from PyQt5.QtCore import QRegExp, pyqtSignal
 
 class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
     num_of_col_with_date = None
     num_of_col_with_amount = None
     num_of_cols_with_description = []
+
+    confirmed = pyqtSignal()    # obiekt sygnału
 
     def __init__(self, data, csv_file):  #przekazanie zawartości pliku csv oraz ścieżki do pliku
         super().__init__()
@@ -45,28 +47,36 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         self.description_column.setValidator(validator_description)
 
     def confirm(self):
-        if self.correctness_of_description_columns:
-            print("Poprawny format")
-
-            if self.date_column.text().strip() and self.amount_column.text().strip() and self.description_column.text().strip():
+        if self.are_num_columns_entered():
+            if self.correctness_of_description_columns:
                 self.get_columns_numbers()
-                print(self.date_column.text())
-                print(self.amount_column.text())
-                print(self.description_column.text())
+                # self.confirmed.emit()
             else:
-                print("Nie wprowadzono numerów kolumn")
+                print("Wprowadzono zły format przy wyborze kolumn z opisem")
         else:
-            pass
+            print("Nie wprowadzono danych")
 
 
-    def correctness_of_description_columns(self):   # do poprawy!!
-        if self.description_column.hasAcceptableInput():
-            values = self.description_column.text().split(',')
-            for value in values:
-                num = int(value)
-                if num < 1 or num > self.num_cols:
-                    print(f"Liczby muszą być w zakresie od 1 do {self.num_cols}.")
-                    return False
+    def are_num_columns_entered(self):
+        if not self.date_column.text().strip():
+            return False
+        if not self.description_column.text().strip():
+            return False
+        if not self.amount_column.text().strip():
+            return False
+        
+        return True
+
+
+    def correctness_of_description_columns(self):
+        values = self.description_column.text().split(',')
+        for value in values:
+            num = int(value)
+            print(value)
+            print(num)
+            if num < 1 or num > self.num_cols:
+                print(f"Liczby muszą być w zakresie od 1 do {self.num_cols}.")
+                return False
         return True
     
 
