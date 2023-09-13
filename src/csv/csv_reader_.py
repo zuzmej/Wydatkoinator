@@ -70,6 +70,8 @@ class Csv_reader_():
                     result = csv_dialog.exec_() # otwarcie okna dialogowego do dobrania kategorii
                     if result == 1:
                         self.write_outcome_to_database(csv_dialog, formatted_date)
+                    elif result == 2:  # kliknięto "odrzuć"
+                        pass
                     else:   # kliknięto "anuluj"
                         break
 

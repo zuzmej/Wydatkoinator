@@ -42,6 +42,11 @@ class Ui_csv_dialog(object):
 "QDialogButtonBox QPushButton {\n"
 "    background-color: #3e3e3e;\n"
 "    color: #c8beb7\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    background-color: #3e3e3e;\n"
+"    color: #c8beb7\n"
 "}")
         self.gridLayout = QtWidgets.QGridLayout(csv_dialog)
         self.gridLayout.setObjectName("gridLayout")
@@ -50,7 +55,7 @@ class Ui_csv_dialog(object):
         font.setPointSize(14)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.gridLayout.addWidget(self.label, 0, 0, 1, 3)
+        self.gridLayout.addWidget(self.label, 0, 0, 1, 1)
         self.date_line_edit = QtWidgets.QLineEdit(csv_dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -59,7 +64,7 @@ class Ui_csv_dialog(object):
         self.date_line_edit.setSizePolicy(sizePolicy)
         self.date_line_edit.setMinimumSize(QtCore.QSize(120, 30))
         self.date_line_edit.setObjectName("date_line_edit")
-        self.gridLayout.addWidget(self.date_line_edit, 1, 0, 1, 1)
+        self.gridLayout.addWidget(self.date_line_edit, 1, 0, 1, 2)
         self.amount_line_edit = QtWidgets.QLineEdit(csv_dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -68,7 +73,7 @@ class Ui_csv_dialog(object):
         self.amount_line_edit.setSizePolicy(sizePolicy)
         self.amount_line_edit.setMinimumSize(QtCore.QSize(120, 30))
         self.amount_line_edit.setObjectName("amount_line_edit")
-        self.gridLayout.addWidget(self.amount_line_edit, 1, 1, 1, 1)
+        self.gridLayout.addWidget(self.amount_line_edit, 1, 2, 1, 2)
         self.category_combobox = QtWidgets.QComboBox(csv_dialog)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -77,25 +82,33 @@ class Ui_csv_dialog(object):
         self.category_combobox.setSizePolicy(sizePolicy)
         self.category_combobox.setMinimumSize(QtCore.QSize(120, 30))
         self.category_combobox.setObjectName("category_combobox")
-        self.gridLayout.addWidget(self.category_combobox, 1, 2, 1, 1)
+        self.gridLayout.addWidget(self.category_combobox, 1, 4, 1, 1)
         self.label_2 = QtWidgets.QLabel(csv_dialog)
         font = QtGui.QFont()
         font.setPointSize(14)
         self.label_2.setFont(font)
         self.label_2.setWordWrap(True)
         self.label_2.setObjectName("label_2")
-        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 3)
+        self.gridLayout.addWidget(self.label_2, 2, 0, 1, 5)
         self.description_text_edit = QtWidgets.QPlainTextEdit(csv_dialog)
         font = QtGui.QFont()
         font.setPointSize(12)
         self.description_text_edit.setFont(font)
         self.description_text_edit.setObjectName("description_text_edit")
-        self.gridLayout.addWidget(self.description_text_edit, 3, 0, 1, 3)
+        self.gridLayout.addWidget(self.description_text_edit, 3, 0, 1, 5)
         self.buttonBox = QtWidgets.QDialogButtonBox(csv_dialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.buttonBox.sizePolicy().hasHeightForWidth())
+        self.buttonBox.setSizePolicy(sizePolicy)
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
-        self.gridLayout.addWidget(self.buttonBox, 4, 0, 1, 3)
+        self.gridLayout.addWidget(self.buttonBox, 4, 3, 1, 2)
+        self.reject_button = QtWidgets.QPushButton(csv_dialog)
+        self.reject_button.setObjectName("reject_button")
+        self.gridLayout.addWidget(self.reject_button, 4, 1, 1, 2)
 
         self.retranslateUi(csv_dialog)
         self.buttonBox.accepted.connect(csv_dialog.accept) # type: ignore
@@ -107,3 +120,4 @@ class Ui_csv_dialog(object):
         csv_dialog.setWindowTitle(_translate("csv_dialog", "Dialog"))
         self.label.setText(_translate("csv_dialog", "Odczytano:"))
         self.label_2.setText(_translate("csv_dialog", "Dobierz kategorię na podstawie poniższego opisu:"))
+        self.reject_button.setText(_translate("csv_dialog", "Odrzuć "))

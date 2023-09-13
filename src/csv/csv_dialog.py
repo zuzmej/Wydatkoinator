@@ -11,3 +11,9 @@ class Csv_dialog(QDialog, Ui_csv_dialog):
         categories = self.database.get_all_categories() # pobranie i wyświetlenie wszystkich kategorii
         category_names = [category.name for category in categories]
         self.category_combobox.addItems(category_names)
+
+        self.reject_button.clicked.connect(self.set_flag)
+
+    # ustawianie wartości 2 po naciśnięciu przycisku "odrzuć"
+    def set_flag(self):
+        self.done(2)

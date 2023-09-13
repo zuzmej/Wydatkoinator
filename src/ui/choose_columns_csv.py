@@ -59,6 +59,7 @@ class Ui_choose_columns_csv(object):
         font = QtGui.QFont()
         font.setPointSize(12)
         self.table_csv.setFont(font)
+        self.table_csv.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.table_csv.setObjectName("table_csv")
         self.table_csv.setColumnCount(0)
         self.table_csv.setRowCount(0)
