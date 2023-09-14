@@ -134,7 +134,7 @@ class Csv_reader_():
 
     # odpowiednie formatowanie daty przed wpisaniem do bazy danych
     def format_date(self):
-        possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy-MM-dd"]
+        possible_formats = ["yyyy-MM-dd", "dd-MM-yyyy", "dd.MM.yyyy", "dd/MM/yyyy", "yyyy/MM/dd", "yyyy-MM-dd"]
         for format in possible_formats:
             try:
                 date = QDate.fromString(self.field_with_date, format)
