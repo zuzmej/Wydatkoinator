@@ -63,6 +63,9 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
                 self.database.add_category(add_new_category_dialog.add_category_line_edit.text())
                 self.clear_categories_list()
                 self.set_categories_list()
+            else:
+                self.message_box.setText("Nie wprowadzono nazwy")
+                self.message_box.exec_()
 
 
     # obsługa przycisku do usuwania kategorii
@@ -86,9 +89,14 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         change_category_name_dialog.change_category_combobox.addItems(category_names)
         result = change_category_name_dialog.exec_()
         if result == 1:
-            self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentText(), change_category_name_dialog.change_category_line_edit.text())
-            self.clear_categories_list()
-            self.set_categories_list()
+            if change_category_name_dialog.change_category_line_edit.text().strip():
+                self.database.change_category_name(change_category_name_dialog.change_category_combobox.currentText(), change_category_name_dialog.change_category_line_edit.text())
+                self.clear_categories_list()
+                self.set_categories_list()
+            else:
+                self.message_box.setText("Nie wprowadzono nazwy")
+                self.message_box.exec_()
+
         
 
     # wpisywanie do bazy danych wydatku
