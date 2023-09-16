@@ -53,7 +53,7 @@ QTabBar::tab {
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="TabWidget" name="tabWidget">
      <property name="styleSheet">
       <string notr="true"/>
      </property>
@@ -115,6 +115,12 @@ QTabBar::tab {
    <class>Analysis_tab</class>
    <extends>QWidget</extends>
    <header>src.tabs.analysis_tab</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>src.tabs.horizontal_tabs</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

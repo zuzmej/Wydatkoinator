@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/kubus/Pulpit/Wydatkoinator/ui/main_window.ui'
+# Form implementation generated from reading ui file '/home/kubus/Wydatkoinator/ui/main_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -53,7 +53,7 @@ class Ui_Main_window(object):
 "")
         self.gridLayout = QtWidgets.QGridLayout(Main_window)
         self.gridLayout.setObjectName("gridLayout")
-        self.tabWidget = QtWidgets.QTabWidget(Main_window)
+        self.tabWidget = TabWidget(Main_window)
         self.tabWidget.setStyleSheet("")
         self.tabWidget.setTabPosition(QtWidgets.QTabWidget.West)
         self.tabWidget.setObjectName("tabWidget")
@@ -89,4 +89,5 @@ class Ui_Main_window(object):
 from src.tabs.analysis_tab import Analysis_tab
 from src.tabs.expenses_tab import Expenses_tab
 from src.tabs.history_tab import History_tab
+from src.tabs.horizontal_tabs import TabWidget
 from src.tabs.incomes_tab import Incomes_tab

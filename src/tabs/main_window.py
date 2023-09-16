@@ -1,7 +1,6 @@
 from PyQt5 import QtCore
 from src.ui.main_window import Ui_Main_window
 from PyQt5.QtWidgets import QWidget
-
 class Main_window(QWidget, Ui_Main_window):
     def __init__(self, database):
         super().__init__()
