@@ -14,7 +14,9 @@
    <string>Form</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">QWidget { background-color: #202020 }</string>
+   <string notr="true">QWidget { background-color: #202020 }
+
+QChartView { background-color: red }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">

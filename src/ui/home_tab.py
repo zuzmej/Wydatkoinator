@@ -15,7 +15,9 @@ class Ui_home_tab(object):
     def setupUi(self, home_tab):
         home_tab.setObjectName("home_tab")
         home_tab.resize(1145, 693)
-        home_tab.setStyleSheet("QWidget { background-color: #202020 }")
+        home_tab.setStyleSheet("QWidget { background-color: #202020 }\n"
+"\n"
+"QChartView { background-color: red }")
         self.gridLayout = QtWidgets.QGridLayout(home_tab)
         self.gridLayout.setObjectName("gridLayout")
         self.chart1 = QChartView(home_tab)
