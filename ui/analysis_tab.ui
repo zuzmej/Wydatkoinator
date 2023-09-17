@@ -16,6 +16,9 @@
   <property name="styleSheet">
    <string notr="true">QWidget{
 background-color:#202020;
+/*color:#C8BEB7*/
+}
+QLabel{
 color:#C8BEB7
 }
 QFrame{
@@ -26,10 +29,28 @@ background-color:#252525;
 color:#252525;
 }
 QRadioButton{
+color:#C8BEB7;
 background-color:#252525;
 }
 
-</string>
+QDateEdit{
+color:#C8BEB7
+}
+QPushButton{
+color:#C8BEB7
+}
+QComboBox{
+color:#C8BEB7
+}
+QListWidget{
+color:#C8BEB7
+}
+QListWidgetItem{
+color:#C8BEB7
+}
+QCheckBox{
+color:#C8BEB7
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="2">
