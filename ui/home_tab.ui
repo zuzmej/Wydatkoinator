@@ -34,29 +34,17 @@ QLabel {color: #c8beb7 }</string>
       </size>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
+      <item alignment="Qt::AlignHCenter">
        <widget class="QLabel" name="label">
         <property name="font">
          <font>
-          <pointsize>16</pointsize>
+          <pointsize>35</pointsize>
           <weight>75</weight>
           <bold>true</bold>
          </font>
         </property>
         <property name="text">
-         <string>Wydatkoinator 1.0</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignTop">
-       <widget class="QLabel" name="label_2">
-        <property name="font">
-         <font>
-          <pointsize>14</pointsize>
-         </font>
-        </property>
-        <property name="text">
-         <string>Miej wydatki pod kontrolą.</string>
+         <string>Wydatkoinator  1.0 </string>
         </property>
        </widget>
       </item>

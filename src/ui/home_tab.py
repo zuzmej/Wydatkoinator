@@ -32,18 +32,12 @@ class Ui_home_tab(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.label = QtWidgets.QLabel(self.hello_widget)
         font = QtGui.QFont()
-        font.setPointSize(16)
+        font.setPointSize(35)
         font.setBold(True)
         font.setWeight(75)
         self.label.setFont(font)
         self.label.setObjectName("label")
-        self.verticalLayout.addWidget(self.label)
-        self.label_2 = QtWidgets.QLabel(self.hello_widget)
-        font = QtGui.QFont()
-        font.setPointSize(14)
-        self.label_2.setFont(font)
-        self.label_2.setObjectName("label_2")
-        self.verticalLayout.addWidget(self.label_2, 0, QtCore.Qt.AlignTop)
+        self.verticalLayout.addWidget(self.label, 0, QtCore.Qt.AlignHCenter)
         self.gridLayout.addWidget(self.hello_widget, 0, 0, 1, 2)
         self.chart1 = QChartView(home_tab)
         self.chart1.setObjectName("chart1")
@@ -58,6 +52,5 @@ class Ui_home_tab(object):
     def retranslateUi(self, home_tab):
         _translate = QtCore.QCoreApplication.translate
         home_tab.setWindowTitle(_translate("home_tab", "Form"))
-        self.label.setText(_translate("home_tab", "Wydatkoinator 1.0"))
-        self.label_2.setText(_translate("home_tab", "Miej wydatki pod kontrolą."))
+        self.label.setText(_translate("home_tab", "Wydatkoinator  1.0 "))
 from PyQt5.QtChart import QChartView

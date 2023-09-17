@@ -19,7 +19,7 @@ class Home_tab(QWidget, Ui_home_tab):
         self.date_from = (datetime.today().date() - timedelta(days=30)).strftime("%Y-%m-%d")
         self.date_to = datetime.today().date().strftime("%Y-%m-%d")
 
-        self.hello_widget.setStyleSheet("background-color: #3e3e3e")
+        self.hello_widget.setStyleSheet("background-color: #252525")
 
     def set_database(self, database: Database):
         self.database = database
