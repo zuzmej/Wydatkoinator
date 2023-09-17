@@ -7,7 +7,6 @@ from PyQt5.QtChart import QChart, QPieSeries, QPieSlice, QStackedBarSeries, QBar
 from PyQt5.QtGui import QPainter, QColor, QFont
 from PyQt5.QtCore import Qt, QMargins
 
-
 class Home_tab(QWidget, Ui_home_tab):
     def __init__(self):
         super().__init__()
@@ -53,14 +52,14 @@ class Home_tab(QWidget, Ui_home_tab):
         
         
         chart = QChart()
-        chart.setMargins(QMargins(1, 1, 1, 1))
+        chart.setMargins(QMargins(10,10,10,10))
         chart.setBackgroundBrush(QColor("#252525"))
         chart.setTitleBrush(QColor("#C8BEB7"))
         legend = chart.legend()
         legend.setLabelColor(QColor("#C8BEB7"))  
 
         chart.addSeries(series)
-        chart.setTitle(f"W tym miesiącu najwięcej pieniędzy poszło na:")
+        chart.setTitle(f"W tym miesiącu najwięcej pieniędzy wydano na:")
         title_font = QFont("Ubuntu Bold", 12, QFont.Bold)
         chart.setTitleFont(title_font)
         chart.legend().setVisible(True)
@@ -116,14 +115,15 @@ class Home_tab(QWidget, Ui_home_tab):
         chart.setTitle("Bilans miesięczny:")
         chart.setBackgroundBrush(QColor("#252525"))
         chart.setTitleBrush(QColor("#C8BEB7"))
-        chart.setMargins(QMargins(1, 1, 1, 1))
+        chart.setMargins(QMargins(10,10,10,10))
+
         title_font = QFont("Ubuntu Bold", 12, QFont.Bold)
         chart.setTitleFont(title_font)
 
         # Tworzenie legendy
         legend = chart.legend()
         legend.setLabelColor(QColor("#C8BEB7"))  
-        legend.setAlignment(Qt.AlignRight)
+        legend.setAlignment(Qt.AlignBottom)
         chart.setAnimationOptions(QChart.AllAnimations)
         
         self.chart2.setChart(chart)
