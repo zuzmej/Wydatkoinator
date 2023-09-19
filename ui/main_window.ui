@@ -13,36 +13,112 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget {
+background: #202020}
+
+QFrame {
+background: #252525 }
+
+QLabel {
+color: #c8beb7;
+}
+
+QPushButton {
+background-color: #182B32;
+color: #c8beb7;
+}
+
+QComboBox {
+background-color: #3e3e3e;
+color: #c8beb7;
+}
+
+QLineEdit {
+background-color: #3e3e3e;
+color: #c8beb7;
+}
+
+QDateEdit {
+background-color: #3e3e3e;
+color: #c8beb7;
+}
+
+QListWidget { color: #c8beb7; }
+QTabBar::tab {
+    /* Style dla wszystkich zakładek */
+    color: #c8beb7;  /* Przykładowy kolor tekstu dla zakładek */
+}
+</string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QTabWidget" name="tabWidget">
+    <widget class="TabWidget" name="tabWidget">
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
      <property name="tabPosition">
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
       <number>4</number>
      </property>
-     <widget class="QWidget" name="tab">
+     <property name="usesScrollButtons">
+      <bool>false</bool>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <property name="movable">
+      <bool>false</bool>
+     </property>
+     <property name="tabBarAutoHide">
+      <bool>false</bool>
+     </property>
+     <widget class="QWidget" name="start_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/domek_kolor_64.png</normaloff>../src/resources/domek_kolor_64.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Home</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="tab_3">
+     <widget class="Incomes_tab" name="incomes_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/wplywy_kolor_32.png</normaloff>../src/resources/wplywy_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Wpływy</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="tab_4">
+     <widget class="Expenses_tab" name="expenses_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/wydatki_kolor_32.png</normaloff>../src/resources/wydatki_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Wydatki</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="tab_2">
+     <widget class="History_tab" name="history_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/historia_kolor_32.png</normaloff>../src/resources/historia_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Historia</string>
       </attribute>
      </widget>
-     <widget class="QWidget" name="tab_5">
+     <widget class="Analysis_tab" name="analysis_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/analiza_kolor_32.png</normaloff>../src/resources/analiza_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Analiza</string>
       </attribute>
@@ -51,6 +127,38 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>Incomes_tab</class>
+   <extends>QWidget</extends>
+   <header>src.tabs.incomes_tab</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Expenses_tab</class>
+   <extends>QWidget</extends>
+   <header>src.tabs.expenses_tab</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>History_tab</class>
+   <extends>QWidget</extends>
+   <header>src.tabs.history_tab</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Analysis_tab</class>
+   <extends>QWidget</extends>
+   <header>src.tabs.analysis_tab</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>src.tabs.horizontal_tabs</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
