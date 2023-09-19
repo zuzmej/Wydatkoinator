@@ -80,8 +80,8 @@ QTabBar::tab {
      </property>
      <widget class="QWidget" name="start_tab">
       <attribute name="icon">
-       <iconset>
-        <normaloff>../src/resources/domek_kolor_64.png</normaloff>../src/resources/domek_kolor_64.png</iconset>
+       <iconset resource="../src/resources/res.qrc">
+        <normaloff>:/domek_kolor_32.png</normaloff>:/domek_kolor_32.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Home</string>
@@ -89,8 +89,8 @@ QTabBar::tab {
      </widget>
      <widget class="Incomes_tab" name="incomes_tab">
       <attribute name="icon">
-       <iconset>
-        <normaloff>../src/resources/wplywy_kolor_32.png</normaloff>../src/resources/wplywy_kolor_32.png</iconset>
+       <iconset resource="../src/resources/res.qrc">
+        <normaloff>:/wplywy_kolor_32.png</normaloff>:/wplywy_kolor_32.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Wpływy</string>
@@ -98,8 +98,8 @@ QTabBar::tab {
      </widget>
      <widget class="Expenses_tab" name="expenses_tab">
       <attribute name="icon">
-       <iconset>
-        <normaloff>../src/resources/wydatki_kolor_32.png</normaloff>../src/resources/wydatki_kolor_32.png</iconset>
+       <iconset resource="../src/resources/res.qrc">
+        <normaloff>:/wydatki_kolor_32.png</normaloff>:/wydatki_kolor_32.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Wydatki</string>
@@ -107,8 +107,8 @@ QTabBar::tab {
      </widget>
      <widget class="History_tab" name="history_tab">
       <attribute name="icon">
-       <iconset>
-        <normaloff>../src/resources/historia_kolor_32.png</normaloff>../src/resources/historia_kolor_32.png</iconset>
+       <iconset resource="../src/resources/res.qrc">
+        <normaloff>:/historia_kolor_32.png</normaloff>:/historia_kolor_32.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Historia</string>
@@ -116,8 +116,8 @@ QTabBar::tab {
      </widget>
      <widget class="Analysis_tab" name="analysis_tab">
       <attribute name="icon">
-       <iconset>
-        <normaloff>../src/resources/analiza_kolor_32.png</normaloff>../src/resources/analiza_kolor_32.png</iconset>
+       <iconset resource="../src/resources/res.qrc">
+        <normaloff>:/analiza_kolor_32.png</normaloff>:/analiza_kolor_32.png</iconset>
       </attribute>
       <attribute name="title">
        <string>Analiza</string>
@@ -159,6 +159,8 @@ QTabBar::tab {
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../src/resources/res.qrc"/>
+ </resources>
  <connections/>
 </ui>
