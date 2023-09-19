@@ -32,7 +32,7 @@ class Horizontal_tabs(QtWidgets.QTabBar):
                 iconRect.moveTop(iconRect.top() + yOffset)
                 
                 # Dostosuj pozycję ikony tak, aby była przed tekstem
-                iconRect.moveLeft(space_width)
+                iconRect.moveLeft(5*space_width)
                 painter.drawPixmap(iconRect, icon.pixmap(iconSize))
             
             # Narysuj tekst po ikonie
@@ -48,12 +48,21 @@ class Horizontal_tabs(QtWidgets.QTabBar):
         # Ustawienie czcionki
         font = QtGui.QFont()
         font.setPixelSize(14)
+        
         # Pobranie wielkości tekstu
         fm = QtGui.QFontMetrics(font)
-        width = fm.width(self.tabText(index)) + 20  # Dodanie trochę miejsca z boku
+        text_width = fm.width(self.tabText(index))
+        
+        # Pobranie szerokości ikony (jeśli jest)
+        icon_width = 0
+        if not self.tabIcon(index).isNull():
+            icon_width = fm.height()  # zakładając, że wysokość tekstu jest równa wysokości ikony
+        
+        # Całkowita szerokość = szerokość tekstu + szerokość ikony + odstępy (na przykład 20 jednostek po obu stronach tekstu oraz 20 jednostek między tekstem a ikoną)
+        width = text_width + icon_width + 60
         height = super().tabSizeHint(index).height()
 
-        return QtCore.QSize(width, height)  # Zapewniamy, że zawsze zwracamy obiekt QSize
+        return QtCore.QSize(width, height)
 
 
 class TabWidget(QtWidgets.QTabWidget):

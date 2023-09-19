@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/kubus/Wydatkoinator/ui/main_window.ui'
+# Form implementation generated from reading ui file '/home/kubus/Pulpit/Wydatkoinator/ui/main_window.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -56,32 +56,41 @@ class Ui_Main_window(object):
         self.tabWidget = TabWidget(Main_window)
         self.tabWidget.setStyleSheet("")
         self.tabWidget.setTabPosition(QtWidgets.QTabWidget.West)
+        self.tabWidget.setUsesScrollButtons(False)
         self.tabWidget.setDocumentMode(False)
         self.tabWidget.setTabsClosable(False)
-        self.tabWidget.setMovable(True)
+        self.tabWidget.setMovable(False)
         self.tabWidget.setTabBarAutoHide(False)
         self.tabWidget.setObjectName("tabWidget")
         self.start_tab = QtWidgets.QWidget()
         self.start_tab.setObjectName("start_tab")
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("/home/kubus/Wydatkoinator/ui/../src/resources/domek_kolor_64.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("/home/kubus/Pulpit/Wydatkoinator/ui/../src/resources/domek_kolor_64.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.tabWidget.addTab(self.start_tab, icon, "")
         self.incomes_tab = Incomes_tab()
         self.incomes_tab.setObjectName("incomes_tab")
-        self.tabWidget.addTab(self.incomes_tab, "")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("/home/kubus/Pulpit/Wydatkoinator/ui/../src/resources/wplywy_kolor_32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.tabWidget.addTab(self.incomes_tab, icon1, "")
         self.expenses_tab = Expenses_tab()
         self.expenses_tab.setObjectName("expenses_tab")
-        self.tabWidget.addTab(self.expenses_tab, "")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("/home/kubus/Pulpit/Wydatkoinator/ui/../src/resources/wydatki_kolor_32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.tabWidget.addTab(self.expenses_tab, icon2, "")
         self.history_tab = History_tab()
         self.history_tab.setObjectName("history_tab")
-        self.tabWidget.addTab(self.history_tab, "")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("/home/kubus/Pulpit/Wydatkoinator/ui/../src/resources/historia_kolor_32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.tabWidget.addTab(self.history_tab, icon3, "")
         self.analysis_tab = Analysis_tab()
         self.analysis_tab.setObjectName("analysis_tab")
-        self.tabWidget.addTab(self.analysis_tab, "")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("/home/kubus/Pulpit/Wydatkoinator/ui/../src/resources/analiza_kolor_32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.tabWidget.addTab(self.analysis_tab, icon4, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
 
         self.retranslateUi(Main_window)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(4)
         QtCore.QMetaObject.connectSlotsByName(Main_window)
 
     def retranslateUi(self, Main_window):

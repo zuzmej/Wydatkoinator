@@ -61,7 +61,10 @@ QTabBar::tab {
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
+     </property>
+     <property name="usesScrollButtons">
+      <bool>false</bool>
      </property>
      <property name="documentMode">
       <bool>false</bool>
@@ -70,7 +73,7 @@ QTabBar::tab {
       <bool>false</bool>
      </property>
      <property name="movable">
-      <bool>true</bool>
+      <bool>false</bool>
      </property>
      <property name="tabBarAutoHide">
       <bool>false</bool>
@@ -85,21 +88,37 @@ QTabBar::tab {
       </attribute>
      </widget>
      <widget class="Incomes_tab" name="incomes_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/wplywy_kolor_32.png</normaloff>../src/resources/wplywy_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Wpływy</string>
       </attribute>
      </widget>
      <widget class="Expenses_tab" name="expenses_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/wydatki_kolor_32.png</normaloff>../src/resources/wydatki_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Wydatki</string>
       </attribute>
      </widget>
      <widget class="History_tab" name="history_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/historia_kolor_32.png</normaloff>../src/resources/historia_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Historia</string>
       </attribute>
      </widget>
      <widget class="Analysis_tab" name="analysis_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/analiza_kolor_32.png</normaloff>../src/resources/analiza_kolor_32.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Analiza</string>
       </attribute>
