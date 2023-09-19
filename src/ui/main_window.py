@@ -56,10 +56,16 @@ class Ui_Main_window(object):
         self.tabWidget = TabWidget(Main_window)
         self.tabWidget.setStyleSheet("")
         self.tabWidget.setTabPosition(QtWidgets.QTabWidget.West)
+        self.tabWidget.setDocumentMode(False)
+        self.tabWidget.setTabsClosable(False)
+        self.tabWidget.setMovable(True)
+        self.tabWidget.setTabBarAutoHide(False)
         self.tabWidget.setObjectName("tabWidget")
         self.start_tab = QtWidgets.QWidget()
         self.start_tab.setObjectName("start_tab")
-        self.tabWidget.addTab(self.start_tab, "")
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("/home/kubus/Wydatkoinator/ui/../src/resources/domek_kolor_64.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.tabWidget.addTab(self.start_tab, icon, "")
         self.incomes_tab = Incomes_tab()
         self.incomes_tab.setObjectName("incomes_tab")
         self.tabWidget.addTab(self.incomes_tab, "")
@@ -75,7 +81,7 @@ class Ui_Main_window(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
 
         self.retranslateUi(Main_window)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Main_window)
 
     def retranslateUi(self, Main_window):

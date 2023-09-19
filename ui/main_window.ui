@@ -61,9 +61,25 @@ QTabBar::tab {
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
+     </property>
+     <property name="documentMode">
+      <bool>false</bool>
+     </property>
+     <property name="tabsClosable">
+      <bool>false</bool>
+     </property>
+     <property name="movable">
+      <bool>true</bool>
+     </property>
+     <property name="tabBarAutoHide">
+      <bool>false</bool>
      </property>
      <widget class="QWidget" name="start_tab">
+      <attribute name="icon">
+       <iconset>
+        <normaloff>../src/resources/domek_kolor_64.png</normaloff>../src/resources/domek_kolor_64.png</iconset>
+      </attribute>
       <attribute name="title">
        <string>Home</string>
       </attribute>
