@@ -17,6 +17,9 @@ class Ui_analisys_tab(object):
         analisys_tab.resize(1130, 693)
         analisys_tab.setStyleSheet("QWidget{\n"
 "background-color:#202020;\n"
+"/*color:#C8BEB7*/\n"
+"}\n"
+"QLabel{\n"
 "color:#C8BEB7\n"
 "}\n"
 "QFrame{\n"
@@ -27,10 +30,28 @@ class Ui_analisys_tab(object):
 "color:#252525;\n"
 "}\n"
 "QRadioButton{\n"
+"color:#C8BEB7;\n"
 "background-color:#252525;\n"
 "}\n"
 "\n"
-"")
+"QDateEdit{\n"
+"color:#C8BEB7\n"
+"}\n"
+"QPushButton{\n"
+"color:#C8BEB7\n"
+"}\n"
+"QComboBox{\n"
+"color:#C8BEB7\n"
+"}\n"
+"QListWidget{\n"
+"color:#C8BEB7\n"
+"}\n"
+"QListWidgetItem{\n"
+"color:#C8BEB7\n"
+"}\n"
+"QCheckBox{\n"
+"color:#C8BEB7\n"
+"}")
         self.gridLayout = QtWidgets.QGridLayout(analisys_tab)
         self.gridLayout.setObjectName("gridLayout")
         self.select_date = QtWidgets.QFrame(analisys_tab)
