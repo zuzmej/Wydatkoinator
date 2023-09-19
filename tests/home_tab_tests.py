@@ -18,4 +18,4 @@ w.draw_pie_chart()
 w.draw_stack_chart()
 w.show()
 
-sys.exit(app.exec_())  
+sys.exit(app.exec_())       
