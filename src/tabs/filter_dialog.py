@@ -11,6 +11,7 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
         super().__init__()
         self.setupUi(self)
         self.database = None
+        self.setWindowTitle(" ")
 
         self.date_from.setDate(datetime.today().date()- timedelta(days=7)) #ustawienie domyślnej daty
         self.date_to.setDate(datetime.today().date())

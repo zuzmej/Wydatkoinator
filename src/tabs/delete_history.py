@@ -5,6 +5,8 @@ class Delete_history(QDialog, Ui_delete_history):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle(" ")
+
 
 
         

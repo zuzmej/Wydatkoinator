@@ -17,9 +17,11 @@
    <string notr="true">QWidget{
 background-color: #202020;
 }
+
 QFrame{
 background-color: #252525;
 }
+
 #chart{
 background-color: #252525;
 }
@@ -27,18 +29,44 @@ background-color: #252525;
 QLabel{
 color:#C8BEB7;
 }
-QPushButton{
-color:#C8BEB7;
-background-color:#515151
+
+QPushButton {
+background-color: #182B32;
+color: #c8beb7;
 }
-QLineEdit{
-background-color:#182B32;
-color:#C8BEB7;
+
+QLineEdit {
+background-color: #3e3e3e;
+color: #c8beb7;
 }
-QDateEdit{
-background-color:#182B32;
-color:#C8BEB7;
-}</string>
+
+QDateEdit {
+background-color: #3e3e3e;
+color: #c8beb7;
+}
+
+QListWidget { color: #c8beb7; }
+QHeaderView::section {
+    background-color: transparent;  /* brak tła */
+    color:#C8BEB7;  /* kolor napisu */
+	 border-top: 4px solid  #182B32;
+    border-bottom: 4px solid  #182B32;;
+	border-left: none;
+    border-right: none;
+ font-size: 20px;  /* Ustawienie rozmiaru czcionki */
+}
+
+QTableWidget::item {
+    font-size: 20px;
+     color:#C8BEB7
+}
+QTableWidget::item:selected {
+        background-color:  #252525; 
+color:#C8BEB7 ;
+        border: 2px solid #C8BEB7;     
+    }
+
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="1" column="2">
@@ -97,21 +125,11 @@ color:#C8BEB7;
            <widget class="QTableWidget" name="incomes_list">
             <property name="font">
              <font>
-              <pointsize>15</pointsize>
+              <pointsize>13</pointsize>
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QHeaderView::section {
-    background-color: transparent;  /* brak tła */
-    color:#C8BEB7;  /* kolor napisu */
-    border: none;  /* brak ramki */
- font-size: 20px;  /* Ustawienie rozmiaru czcionki */
-}
-
-QTableWidget::item {
-    font-size: 20px;
-     color:#C8BEB7
-}</string>
+             <string notr="true"/>
             </property>
             <property name="editTriggers">
              <set>QAbstractItemView::NoEditTriggers</set>
