@@ -33,15 +33,25 @@ color:#C8BEB7;
 background-color:#252525;
 }
 
-QDateEdit{
-color:#C8BEB7
+QPushButton {
+background-color: #182B32;
+color: #c8beb7;
 }
-QPushButton{
-color:#C8BEB7
+QComboBox {
+background-color: #3e3e3e;
+color: #c8beb7;
 }
-QComboBox{
-color:#C8BEB7
+
+QLineEdit {
+background-color: #3e3e3e;
+color: #c8beb7;
 }
+
+QDateEdit {
+background-color: #3e3e3e;
+color: #c8beb7;
+}
+
 QListWidget{
 color:#C8BEB7
 }
@@ -83,6 +93,12 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
      <layout class="QGridLayout" name="gridLayout_4">
       <item row="4" column="1">
        <widget class="QDateEdit" name="date_from">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>35</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true"/>
         </property>
@@ -93,8 +109,13 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
       </item>
       <item row="0" column="0" colspan="4">
        <widget class="QLabel" name="title_select_date">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>Wybierz okres</string>
+         <string>Wybierz okres:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -103,6 +124,12 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
       </item>
       <item row="4" column="3">
        <widget class="QDateEdit" name="date_to">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>35</height>
+         </size>
+        </property>
         <property name="styleSheet">
          <string notr="true">QCalendarWidget QWidget { background-color: #c8beb7; }    /* calosc */ 
 
@@ -123,6 +150,11 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Od:</string>
         </property>
@@ -138,6 +170,11 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
         </property>
         <property name="text">
          <string>Do:</string>
@@ -173,8 +210,13 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
      <layout class="QGridLayout" name="gridLayout_3">
       <item row="0" column="0">
        <widget class="QLabel" name="title_select_categories">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>Wybierz kategorie</string>
+         <string>Wybierz kategorie:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -183,6 +225,12 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
       </item>
       <item row="1" column="0">
        <widget class="QComboBox" name="categories_list">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>35</height>
+         </size>
+        </property>
         <property name="editable">
          <bool>false</bool>
         </property>
@@ -218,10 +266,15 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
       <enum>QFrame::Raised</enum>
      </property>
      <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="0">
+      <item row="0" column="0" colspan="2">
        <widget class="QLabel" name="title_select_chart_type">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
         <property name="text">
-         <string>Wybierz typ wykresu</string>
+         <string>Wybierz typ wykresu:</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -230,6 +283,11 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
       </item>
       <item row="1" column="0">
        <widget class="QRadioButton" name="pie_chart_button">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Wykres kołowy</string>
         </property>
@@ -238,8 +296,13 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
         </property>
        </widget>
       </item>
-      <item row="2" column="0">
+      <item row="1" column="1">
        <widget class="QRadioButton" name="stack_chart_button">
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
         <property name="text">
          <string>Wykres stosowy</string>
         </property>
@@ -255,6 +318,17 @@ QCalendarWidget QToolButton { color: black; }    /* najwyzszy naglowek - czcionk
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>216</width>
+       <height>30</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>16</pointsize>
+      </font>
      </property>
      <property name="mouseTracking">
       <bool>false</bool>
