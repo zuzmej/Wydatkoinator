@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QWidget, QHeaderView, QTableWidgetItem
+from PyQt5.QtWidgets import QWidget, QHeaderView, QTableWidgetItem, QMessageBox
 from src.ui.incomes_tab import Ui_incomes_tab
 from src.database.database import Database
 from PyQt5.QtGui import QDoubleValidator
@@ -19,6 +19,12 @@ class Incomes_tab(QWidget, Ui_incomes_tab):
         self.incomes_list.setHorizontalHeaderLabels(["data", "kwota"])
         self.confirm_button.clicked.connect(self.add_income)
         self.bar_chart = Bar_chart(self.chart)
+
+        self.message_box = QMessageBox()
+        self.message_box.setWindowTitle("Informacja")
+        self.message_box.setStyleSheet("color: #c8beb7; background-color: #3e3e3e")
+        self.message_box.setIcon(QMessageBox.Information)
+        self.message_box.resize(100,100)
 
     def set_database(self, database: Database):
         self.database = database
@@ -49,8 +55,12 @@ class Incomes_tab(QWidget, Ui_incomes_tab):
 
             self.database.add_expense(amount=float(amount), date=self.date.date().toString("yyyy-MM-dd"), category_id=self.database.get_category_id_by_name("Wpływy"))
             self.lineEdit.clear()
-            self.set_incomes_list()
-        self.show_chart()
+            self.set_incomes_list()            
+            self.show_chart()
+        else:
+            self.message_box.setText("Nie wprowadzono kwoty")
+            self.message_box.exec_()
+
     
     def months_ago_first_day(self, months_ago):
         today = datetime.today().date()
