@@ -114,11 +114,6 @@ class History_tab(QWidget, Ui_history_tab):
         window.set_database(self.database)
         window.set_categories_list()
         window.exec_()
-        print(self.filters.start_date)
-        print(self.filters.end_date)
-        print(self.filters.amount_min)
-        print(self.filters.amount_max)
-        print(self.filters.chosen_categories)
         self.set_history_list()
 
     def clear_filters(self):

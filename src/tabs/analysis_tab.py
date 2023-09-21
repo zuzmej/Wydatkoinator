@@ -35,19 +35,15 @@ class Analysis_tab(QWidget, Ui_analisys_tab):
     def set_pie_chart(self):
         self.is_pie_chart_set = True
         self.is_stack_chart_set = False
-        print("pie chart set")
 
     def set_stack_chart(self):
         self.is_pie_chart_set = False
         self.is_stack_chart_set = True
-        print("stack chart set")
 
     def get_date_from(self):
-        print(self.date_from.date().toPyDate().strftime("%Y-%m-%d"))
         return self.date_from.date().toPyDate()
     
     def get_date_to(self):
-        print(self.date_to.date().toPyDate())
         return self.date_to.date().toPyDate()
     
     def correctness_of_dates(self):
@@ -69,7 +65,6 @@ class Analysis_tab(QWidget, Ui_analisys_tab):
             selected_categories.pop(selected_categories.index("Wszystkie"))
 
         for category in selected_categories:
-            print(category)
             expenses.extend(self.database.get_expenses_by_category_name_in_date_range(category, self.date_from.date().toPyDate().strftime("%Y-%m-%d"), self.date_to.date().toPyDate().strftime("%Y-%m-%d")))
 
         if self.is_pie_chart_set:

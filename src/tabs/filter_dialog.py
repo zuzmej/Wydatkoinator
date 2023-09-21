@@ -1,5 +1,5 @@
 from src.ui.filter_dialog import Ui_filter_dialog
-from PyQt5.QtWidgets import QDialog, QDialogButtonBox
+from PyQt5.QtWidgets import QDialog, QDialogButtonBox, QMessageBox
 from .filters import Filters
 from src.database.database import Database
 from datetime import datetime, timedelta
@@ -35,6 +35,12 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
         self.amount_checkbox.stateChanged.connect(self.is_amount_checkbox_checked)
 
         self.filters = filters
+
+        self.message_box = QMessageBox()
+        self.message_box.setWindowTitle("Informacja")
+        self.message_box.setStyleSheet("color: #c8beb7; background-color: #3e3e3e")
+        self.message_box.setIcon(QMessageBox.Information)
+        self.message_box.resize(100,100)
 
 
     def set_database(self, database: Database):
@@ -86,7 +92,8 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
                 self.filters.start_date = self.date_from.date().toString("yyyy-MM-dd")
                 self.filters.end_date = self.date_to.date().toString("yyyy-MM-dd")
             else:
-                print("Wprowadź poprawny zakres dat")
+                self.message_box.setText("Wprowadź poprawny zakres dat")
+                self.message_box.exec_()
                 
         if self.categories_checkbox.isChecked():
             self.filters.chosen_categories = self.combo_box.get_checked_items()
@@ -96,4 +103,5 @@ class Filter_dialog(QDialog, Ui_filter_dialog):
                 self.filters.amount_min = self.amount_min.text()
                 self.filters.amount_max = self.amount_max.text()
             else:
-                print("Wprowadź poprawny zakres kwot")
+                self.message_box.setText("Wprowadź poprawny zakres kwot")
+                self.message_box.exec_()

@@ -61,17 +61,14 @@ class Stack_chart(Chart):
         oldest, youngest = self.get_date_range([expense.date for expense in expenses])  # jakie daty wpisał użytkownik
 
         if self.check_dates(oldest, youngest):  # jeżeli dotyczą tego samego miesiąca
-            print("daty dot. tego samego miesiąca")
             separated_weeks = self.separate_weeks(oldest, youngest)
             for start_date, end_date in separated_weeks.items():
                 sums = self.sum_expenses_by_category_in_date_range(expenses, start_date, end_date)
                 for category, bar_set in sets.items():
                    if category in sums:
-                       print("true")
                        bar_set.append(sums[category])
                    else:
                        bar_set.append(0)
-                       print("false")
             categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_weeks.items()]
         else:       # jeżeli dotyczą różnych miesięcy 
             separated_months = self.separate_months(oldest, youngest)
@@ -79,11 +76,9 @@ class Stack_chart(Chart):
                 sums = self.sum_expenses_by_category_in_date_range(expenses, start_date, end_date)  #sumuj względem kategorii tylko w jednym miesiącu
                 for category, bar_set in sets.items():
                    if category in sums:
-                       print("true")
                        bar_set.append(sums[category])
                    else:
                        bar_set.append(0)
-                       print("false")
             categories = [f"{start_date} - {end_date}" for start_date, end_date in separated_months.items()]
 
         for category, bar_set in sets.items():
