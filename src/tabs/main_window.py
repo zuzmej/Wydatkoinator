@@ -13,6 +13,7 @@ class Main_window(QWidget, Ui_Main_window):
 
         self.incomes_tab.set_database(database)
         self.incomes_tab.set_incomes_list()
+        self.incomes_tab.show_chart()
 
         self.expenses_tab.set_database(database)
         self.expenses_tab.set_categories_list()

@@ -60,7 +60,7 @@ class Horizontal_tabs(QtWidgets.QTabBar):
         
         # Całkowita szerokość = szerokość tekstu + szerokość ikony + odstępy (na przykład 20 jednostek po obu stronach tekstu oraz 20 jednostek między tekstem a ikoną)
         width = text_width + icon_width + 60
-        height = super().tabSizeHint(index).height()
+        height = 60
 
         return QtCore.QSize(width, height)
 

@@ -60,7 +60,7 @@ class Home_tab(QWidget, Ui_home_tab):
         legend.setLabelColor(QColor("#C8BEB7"))
 
         chart.addSeries(series)
-        chart.setTitle(f"W tym miesiącu najwięcej pieniędzy wydano na:")
+        chart.setTitle(f"W ostatnich 30 dniach najwięcej wydano na:")
         title_font = QFont("Ubuntu Bold", 12, QFont.Bold)
         chart.setTitleFont(title_font)
         chart.legend().setVisible(True)
@@ -113,7 +113,7 @@ class Home_tab(QWidget, Ui_home_tab):
         
         chart = QChart()
         chart.addSeries(series)
-        chart.setTitle("Bilans miesięczny:")
+        chart.setTitle("Bilans z ostatnich 30 dni:")
         chart.setBackgroundBrush(QColor("#252525"))
         chart.setTitleBrush(QColor("#C8BEB7"))
         chart.setMargins(QMargins(10,10,10,10))
