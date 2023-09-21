@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>760</width>
-    <height>518</height>
+    <width>1145</width>
+    <height>693</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -84,7 +84,7 @@ QTabBar::tab {
         <normaloff>:/domek_kolor_32.png</normaloff>:/domek_kolor_32.png</iconset>
       </attribute>
       <attribute name="title">
-       <string>Home</string>
+       <string>Start</string>
       </attribute>
      </widget>
      <widget class="Incomes_tab" name="incomes_tab">

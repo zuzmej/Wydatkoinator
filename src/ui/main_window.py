@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Main_window(object):
     def setupUi(self, Main_window):
         Main_window.setObjectName("Main_window")
-        Main_window.resize(760, 518)
+        Main_window.resize(1145, 693)
         Main_window.setStyleSheet("QWidget {\n"
 "background: #202020}\n"
 "\n"
@@ -96,7 +96,7 @@ class Ui_Main_window(object):
     def retranslateUi(self, Main_window):
         _translate = QtCore.QCoreApplication.translate
         Main_window.setWindowTitle(_translate("Main_window", "Form"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.home_tab), _translate("Main_window", "Home"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.home_tab), _translate("Main_window", "Start"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.incomes_tab), _translate("Main_window", "Wpływy"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.expenses_tab), _translate("Main_window", "Wydatki"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("Main_window", "Historia"))
