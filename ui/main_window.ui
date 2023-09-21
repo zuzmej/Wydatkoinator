@@ -61,7 +61,7 @@ QTabBar::tab {
       <enum>QTabWidget::West</enum>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>0</number>
      </property>
      <property name="usesScrollButtons">
       <bool>false</bool>
@@ -78,7 +78,7 @@ QTabBar::tab {
      <property name="tabBarAutoHide">
       <bool>false</bool>
      </property>
-     <widget class="QWidget" name="start_tab">
+     <widget class="Home_tab" name="home_tab">
       <attribute name="icon">
        <iconset resource="../src/resources/res.qrc">
         <normaloff>:/domek_kolor_32.png</normaloff>:/domek_kolor_32.png</iconset>
@@ -156,6 +156,12 @@ QTabBar::tab {
    <class>TabWidget</class>
    <extends>QTabWidget</extends>
    <header>src.tabs.horizontal_tabs</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Home_tab</class>
+   <extends>QWidget</extends>
+   <header>src.tabs.home_tab</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

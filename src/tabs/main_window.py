@@ -7,6 +7,10 @@ class Main_window(QWidget, Ui_Main_window):
         self.setupUi(self)
         self.database = database
 
+        self.home_tab.set_database(database)
+        self.home_tab.draw_pie_chart()
+        self.home_tab.draw_stack_chart()
+
         self.incomes_tab.set_database(database)
         self.incomes_tab.set_incomes_list()
 

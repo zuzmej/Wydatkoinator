@@ -1,16 +1,16 @@
 <RCC>
-    <qresource prefix="/">
-        <file>analiza_kolor_32.png</file>
-        <file>analiza_kolor_64.png</file>
-        <file>bin(1)_16.png</file>
-        <file>domek_kolor_32.png</file>
-        <file>domek_kolor_64.png</file>
-        <file>historia_kolor_32.png</file>
-        <file>historia_kolor_64.png</file>
-        <file>pencil_16.png</file>
-        <file>wplywy_kolor_32.png</file>
-        <file>wplywy_kolor_64.png</file>
-        <file>wydatki_kolor_32.png</file>
-        <file>wydatki_kolor_64.png</file>
-    </qresource>
+  <qresource prefix="/">
+    <file>analiza_kolor_32.png</file>
+    <file>analiza_kolor_64.png</file>
+    <file>bin(1)_16.png</file>
+    <file>domek_kolor_32.png</file>
+    <file>domek_kolor_64.png</file>
+    <file>historia_kolor_32.png</file>
+    <file>historia_kolor_64.png</file>
+    <file>pencil_16.png</file>
+    <file>wplywy_kolor_32.png</file>
+    <file>wplywy_kolor_64.png</file>
+    <file>wydatki_kolor_32.png</file>
+    <file>wydatki_kolor_64.png</file>
+  </qresource>
 </RCC>
