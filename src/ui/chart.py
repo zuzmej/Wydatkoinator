@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/kubus/Pulpit/Wydatkoinator/ui/chart.ui'
+# Form implementation generated from reading ui file '/home/zuzanna/Wydatkoinator/ui/chart.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #

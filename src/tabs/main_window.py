@@ -5,6 +5,7 @@ class Main_window(QWidget, Ui_Main_window):
     def __init__(self, database):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle(" ")
         self.database = database
 
         self.home_tab.set_database(database)

@@ -5,3 +5,4 @@ class Change_category_name_dialog(QDialog, Ui_change_category_name_dialog):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
+        self.setWindowTitle(" ")

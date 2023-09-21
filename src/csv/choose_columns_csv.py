@@ -14,6 +14,8 @@ class Choose_columns_csv(QDialog, Ui_choose_columns_csv):
         self.setupUi(self)
         self.data = data
         self.csv_file = csv_file
+        self.setWindowTitle(" ")
+
 
         self.ok_button = self.buttonBox.button(QDialogButtonBox.Ok)
         self.cancel_button = self.buttonBox.button(QDialogButtonBox.Cancel)

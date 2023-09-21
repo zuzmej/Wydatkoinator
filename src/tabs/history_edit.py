@@ -11,6 +11,8 @@ class History_edit(QDialog, Ui_history_edit):
         self.line_edit.setValidator(self.validator)
         ok_button = self.buttonBox.button(QDialogButtonBox.Ok)
         ok_button.clicked.connect(self.confirm_changes)
+        self.setWindowTitle(" ")
+
 
     def set_database(self, database):
         self.database = database

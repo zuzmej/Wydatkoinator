@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/kubus/Pulpit/Wydatkoinator/ui/history_edit.ui'
+# Form implementation generated from reading ui file '/home/zuzanna/Wydatkoinator/ui/history_edit.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #

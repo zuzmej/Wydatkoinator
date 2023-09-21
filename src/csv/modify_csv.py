@@ -8,6 +8,7 @@ class Modify_csv(QDialog, Ui_modify_csv):
         self.setupUi(self)
         self.csv_content = csv_content
         self.csv_file = csv_file
+        self.setWindowTitle(" ")
 
         self.plain_text_modify.insertPlainText(self.csv_content)    # wyświetlenie zawartości pliku w odpowiednim miejscu
 
