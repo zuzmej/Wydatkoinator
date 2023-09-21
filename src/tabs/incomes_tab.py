@@ -72,7 +72,8 @@ class Incomes_tab(QWidget, Ui_incomes_tab):
         new_date = datetime.today().date()
 
         incomes = self.database.get_expenses_by_category_name_in_date_range("Wpływy", old_date.strftime("%Y-%m-%d"), new_date.strftime("%Y-%m-%d"))
-        self.bar_chart.draw_chart(incomes)
+        if incomes:
+            self.bar_chart.draw_chart(incomes)
 
         
     
