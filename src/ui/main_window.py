@@ -62,11 +62,11 @@ class Ui_Main_window(object):
         self.tabWidget.setMovable(False)
         self.tabWidget.setTabBarAutoHide(False)
         self.tabWidget.setObjectName("tabWidget")
-        self.start_tab = QtWidgets.QWidget()
-        self.start_tab.setObjectName("start_tab")
+        self.home_tab = Home_tab()
+        self.home_tab.setObjectName("home_tab")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/domek_kolor_32.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.tabWidget.addTab(self.start_tab, icon, "")
+        self.tabWidget.addTab(self.home_tab, icon, "")
         self.incomes_tab = Incomes_tab()
         self.incomes_tab.setObjectName("incomes_tab")
         icon1 = QtGui.QIcon()
@@ -90,13 +90,13 @@ class Ui_Main_window(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
 
         self.retranslateUi(Main_window)
-        self.tabWidget.setCurrentIndex(4)
+        self.tabWidget.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Main_window)
 
     def retranslateUi(self, Main_window):
         _translate = QtCore.QCoreApplication.translate
         Main_window.setWindowTitle(_translate("Main_window", "Form"))
-        self.tabWidget.setTabText(self.tabWidget.indexOf(self.start_tab), _translate("Main_window", "Home"))
+        self.tabWidget.setTabText(self.tabWidget.indexOf(self.home_tab), _translate("Main_window", "Home"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.incomes_tab), _translate("Main_window", "Wpływy"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.expenses_tab), _translate("Main_window", "Wydatki"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.history_tab), _translate("Main_window", "Historia"))
@@ -104,6 +104,7 @@ class Ui_Main_window(object):
 from src.tabs.analysis_tab import Analysis_tab
 from src.tabs.expenses_tab import Expenses_tab
 from src.tabs.history_tab import History_tab
+from src.tabs.home_tab import Home_tab
 from src.tabs.horizontal_tabs import TabWidget
 from src.tabs.incomes_tab import Incomes_tab
 import src.resources.res_rc

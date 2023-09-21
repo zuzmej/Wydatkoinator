@@ -48,6 +48,7 @@ class Home_tab(QWidget, Ui_home_tab):
         series.setLabelsVisible(True)
         series.setLabelsPosition(QPieSlice.LabelOutside)
         for slice in series.slices():
+            slice.setLabel("{:.0f}%".format(100 * slice.percentage()) + " / " + "{:.2f}zł".format(slice.value()))
             slice.setLabelColor(QColor("#C8BEB7")) 
         
         
@@ -56,7 +57,7 @@ class Home_tab(QWidget, Ui_home_tab):
         chart.setBackgroundBrush(QColor("#252525"))
         chart.setTitleBrush(QColor("#C8BEB7"))
         legend = chart.legend()
-        legend.setLabelColor(QColor("#C8BEB7"))  
+        legend.setLabelColor(QColor("#C8BEB7"))
 
         chart.addSeries(series)
         chart.setTitle(f"W tym miesiącu najwięcej pieniędzy wydano na:")
@@ -64,15 +65,16 @@ class Home_tab(QWidget, Ui_home_tab):
         chart.setTitleFont(title_font)
         chart.legend().setVisible(True)
         chart.legend().setAlignment(Qt.AlignBottom)
+
+        x = 0
+        for category_name, category_sum in biggest_sums.items():
+            legend.markers(series)[x].setLabel(category_name)
+            x += 1
        
         chart.setAnimationOptions(QChart.AllAnimations)
         self.chart1.setChart(chart)
         self.chart1.setRenderHint(QPainter.Antialiasing)
         self.chart1.show()
-
-
-        print(sorted_sums)
-        print(biggest_sums)
         
 
 
@@ -92,7 +94,6 @@ class Home_tab(QWidget, Ui_home_tab):
 
         incomes_outcomes_sums["Wydatki"] = others
 
-        print(incomes_outcomes_sums)
 
         series = QStackedBarSeries()
         series.setLabelsVisible(True)
