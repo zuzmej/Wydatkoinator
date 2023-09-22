@@ -22,7 +22,12 @@ pip install PyQtChart
 pip install sqlalchemy
 sudo apt-get install sqlite3
 ```
-
+# Run
+To run program do:
+```bash
+cd src/tabs
+python3 main.py
+```
 <!-- # Build
 In directory "build":
 ```bash
