@@ -11,19 +11,21 @@ The project was created in Qt and Python. It includes several options listed bel
 To execute the program, check in terminal:
 ```bash
 pip show PyQt5
+pip show PyQtChart
 pip show sqlalchemy
 sqlite3 --version
 ```
 If not installed, do:
 ```bash
 pip install PyQt5
+pip install PyQtChart
 pip install sqlalchemy
 sudo apt-get install sqlite3
 ```
 
-# Build
+<!-- # Build
 In directory "build":
 ```bash
 cmake ..
 make
-```
+``` -->
