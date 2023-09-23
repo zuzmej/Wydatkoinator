@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/zuzanna/Wydatkoinator/ui/home_tab.ui'
+# Form implementation generated from reading ui file '/home/kubus/Pulpit/Wydatkoinator/ui/home_tab.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
