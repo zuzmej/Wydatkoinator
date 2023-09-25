@@ -7,6 +7,7 @@ from src.tabs.add_new_category import Add_new_category
 from src.tabs.delete_category import Delete_category
 from src.tabs.change_category_name_dialog import Change_category_name_dialog
 from src.csv.csv_reader_ import Csv_reader_
+from .confirm_category_remove import Confirm_category_remove
 
 # klasa do obsługi zakładki "Wydatki"
 class Expenses_tab(QWidget, Ui_expenses_tab):
@@ -76,9 +77,13 @@ class Expenses_tab(QWidget, Ui_expenses_tab):
         delete_category.delete_category_combobox.addItems(category_names)
         result = delete_category.exec_() 
         if result == 1:
-            self.database.delete_category(delete_category.delete_category_combobox.currentText())
-            self.clear_categories_list()
-            self.set_categories_list()
+            comfirm = Confirm_category_remove()
+            val = comfirm.exec_()
+            if val == 1:
+                self.database.delete_expenses_by_category_id(self.database.get_category_id_by_name(delete_category.delete_category_combobox.currentText()))
+                self.database.delete_category(delete_category.delete_category_combobox.currentText())
+                self.clear_categories_list()
+                self.set_categories_list()
 
 
     # obsługa przycisku do zmiany nazwy kategorii

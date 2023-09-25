@@ -177,3 +177,15 @@ class Database:
 
         session.commit()
         session.close()
+
+
+
+    def delete_expenses_by_category_id(self, category_id: int):
+        session = self.Session()
+        expenses_to_delete = session.query(Expense).filter_by(category_id=category_id).all()
+
+        for expense in expenses_to_delete:
+            session.delete(expense)
+
+        session.commit()
+        session.close()
